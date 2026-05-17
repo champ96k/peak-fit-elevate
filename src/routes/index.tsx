@@ -1,19 +1,26 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
   Activity, Apple, Award, Brain, ChevronDown, Droplet, Dumbbell, Flame,
   Footprints, Heart, LineChart, Moon, Salad, Star, Target, Trophy, Watch,
-  Zap, Check, Smartphone, Play,
+  Zap, Check, Play,
 } from "lucide-react";
 import { Navbar } from "@/components/peakfit/Navbar";
 import { Counter } from "@/components/peakfit/Counter";
 import { Particles } from "@/components/peakfit/Particles";
 import { Reveal } from "@/components/peakfit/Reveal";
+import logo from "@/assets/peakfit-logo.png";
 import heroAthlete from "@/assets/hero-athlete.jpg";
-import mockup1 from "@/assets/app-mockup-1.jpg";
-import mockup2 from "@/assets/app-mockup-2.jpg";
-import mockup3 from "@/assets/app-mockup-3.jpg";
+import screenHome from "@/assets/screen-home.png";
+import screenDiet from "@/assets/screen-diet.png";
+import screenProgress from "@/assets/screen-progress.png";
+import screenWorkouts from "@/assets/screen-workouts.png";
+import screenExercise from "@/assets/screen-exercise.png";
+import screenLibrary from "@/assets/screen-library.png";
+import screenShapeWeek from "@/assets/screen-shape-week.png";
+import screen8Week from "@/assets/screen-8week.png";
+import screenProfile from "@/assets/screen-profile.png";
 import test1 from "@/assets/testimonial-1.jpg";
 import test2 from "@/assets/testimonial-2.jpg";
 import test3 from "@/assets/testimonial-3.jpg";
@@ -262,18 +269,23 @@ function Landing() {
           </Reveal>
 
           <div className="mt-16 grid items-end gap-8 md:grid-cols-3">
-            {[mockup1, mockup2, mockup3].map((src, i) => (
+            {[
+              { src: screenHome, label: "Home — Daily snapshot" },
+              { src: screenDiet, label: "Diet — Macros & meals" },
+              { src: screenProgress, label: "Progress — Trends & weight" },
+            ].map((s, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div className={`relative ${i === 1 ? "md:-mt-12" : ""}`}>
                   <div className="absolute -inset-4 bg-gradient-glow opacity-50 blur-2xl" />
                   <img
-                    src={src}
-                    alt={`PeakFit app screen ${i + 1}`}
+                    src={s.src}
+                    alt={s.label}
                     loading="lazy"
-                    width={768}
-                    height={1536}
-                    className="relative w-full rounded-3xl border border-border object-cover"
+                    width={886}
+                    height={1918}
+                    className="relative w-full rounded-[2rem] border border-border object-cover shadow-2xl"
                   />
+                  <div className="mt-4 text-center text-xs text-muted-foreground">{s.label}</div>
                 </div>
               </Reveal>
             ))}
