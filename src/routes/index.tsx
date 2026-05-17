@@ -1,19 +1,26 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
   Activity, Apple, Award, Brain, ChevronDown, Droplet, Dumbbell, Flame,
   Footprints, Heart, LineChart, Moon, Salad, Star, Target, Trophy, Watch,
-  Zap, Check, Smartphone, Play,
+  Zap, Check, Play,
 } from "lucide-react";
 import { Navbar } from "@/components/peakfit/Navbar";
 import { Counter } from "@/components/peakfit/Counter";
 import { Particles } from "@/components/peakfit/Particles";
 import { Reveal } from "@/components/peakfit/Reveal";
+import logo from "@/assets/peakfit-logo.png";
 import heroAthlete from "@/assets/hero-athlete.jpg";
-import mockup1 from "@/assets/app-mockup-1.jpg";
-import mockup2 from "@/assets/app-mockup-2.jpg";
-import mockup3 from "@/assets/app-mockup-3.jpg";
+import screenHome from "@/assets/screen-home.png";
+import screenDiet from "@/assets/screen-diet.png";
+import screenProgress from "@/assets/screen-progress.png";
+import screenWorkouts from "@/assets/screen-workouts.png";
+import screenExercise from "@/assets/screen-exercise.png";
+import screenLibrary from "@/assets/screen-library.png";
+import screenShapeWeek from "@/assets/screen-shape-week.png";
+import screen8Week from "@/assets/screen-8week.png";
+import screenProfile from "@/assets/screen-profile.png";
 import test1 from "@/assets/testimonial-1.jpg";
 import test2 from "@/assets/testimonial-2.jpg";
 import test3 from "@/assets/testimonial-3.jpg";
@@ -125,16 +132,17 @@ function Landing() {
               >
                 <a
                   href="#download"
-                  className="group inline-flex items-center gap-2 rounded-full bg-gradient-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground glow-primary transition-transform hover:scale-105"
+                  className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-105"
                 >
-                  <Smartphone className="h-4 w-4" />
-                  Download App
+                  <Apple className="h-4 w-4" />
+                  Download for iOS
                 </a>
                 <a
-                  href="#pricing"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-7 py-3.5 text-sm font-semibold backdrop-blur transition-colors hover:bg-secondary"
+                  href="#download"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground glow-primary transition-transform hover:scale-105"
                 >
-                  Start Free Trial
+                  <Play className="h-4 w-4 fill-primary-foreground" />
+                  Download for Android
                 </a>
               </motion.div>
 
@@ -262,18 +270,23 @@ function Landing() {
           </Reveal>
 
           <div className="mt-16 grid items-end gap-8 md:grid-cols-3">
-            {[mockup1, mockup2, mockup3].map((src, i) => (
+            {[
+              { src: screenHome, label: "Home — Daily snapshot" },
+              { src: screenDiet, label: "Diet — Macros & meals" },
+              { src: screenProgress, label: "Progress — Trends & weight" },
+            ].map((s, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div className={`relative ${i === 1 ? "md:-mt-12" : ""}`}>
                   <div className="absolute -inset-4 bg-gradient-glow opacity-50 blur-2xl" />
                   <img
-                    src={src}
-                    alt={`PeakFit app screen ${i + 1}`}
+                    src={s.src}
+                    alt={s.label}
                     loading="lazy"
-                    width={768}
-                    height={1536}
-                    className="relative w-full rounded-3xl border border-border object-cover"
+                    width={886}
+                    height={1918}
+                    className="relative w-full rounded-[2rem] border border-border object-cover shadow-2xl"
                   />
+                  <div className="mt-4 text-center text-xs text-muted-foreground">{s.label}</div>
                 </div>
               </Reveal>
             ))}
@@ -292,6 +305,85 @@ function Landing() {
               <div className="absolute bottom-6 left-6 text-sm font-medium text-foreground/80">Watch PeakFit in action — 90s</div>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* PLANS — workout tutorial, weekly plan, 8-week */}
+      <section id="plans" className="relative py-24 md:py-32">
+        <div className="absolute inset-x-0 top-1/3 -z-10 h-96 bg-gradient-glow opacity-30 blur-3xl" />
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">Plans</div>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Tutorials, weekly splits, <span className="text-gradient">8-week programs</span>.</h2>
+            <p className="mt-4 text-muted-foreground">Step-by-step exercise guidance, a calendar you actually follow, and a personalized 8-week build that adapts to your body.</p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-8 lg:grid-cols-3">
+            {[
+              {
+                t: "Workout Tutorials",
+                d: "Form cues, target reps, sets, and rest timers — guided through every move with built-in coaching.",
+                img: screenExercise,
+                tag: "Exercise coach",
+              },
+              {
+                t: "Weekly Plan",
+                d: "Push, pull, legs, rest — your week mapped out. Tap a day and start training in two taps.",
+                img: screenWorkouts,
+                tag: "7-day split",
+              },
+              {
+                t: "8-Week Programs",
+                d: "Goal-based progression — gain muscle, cut fat, build strength. Daily targets, splits, and recovery built in.",
+                img: screen8Week,
+                tag: "Personalized",
+              },
+            ].map((p, i) => (
+              <Reveal key={p.t} delay={i * 0.08}>
+                <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-6">
+                  <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-primary opacity-0 blur-3xl transition-opacity group-hover:opacity-20" />
+                  <div className="relative">
+                    <div className="flex items-center justify-between">
+                      <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">{p.tag}</div>
+                    </div>
+                    <div className="mt-6 mx-auto w-full max-w-[260px]">
+                      <img src={p.img} alt={p.t} loading="lazy" className="w-full rounded-[1.75rem] border border-border shadow-xl" />
+                    </div>
+                    <h3 className="mt-6 text-xl font-semibold">{p.t}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{p.d}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Secondary feature row */}
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            <Reveal>
+              <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 md:p-10">
+                <div className="grid items-center gap-8 md:grid-cols-2">
+                  <div>
+                    <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">Exercise library</div>
+                    <h3 className="mt-4 text-2xl font-semibold">Browse by muscle group</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">Chest, back, legs, arms — search any lift, see proper form, and add it to today's session.</p>
+                  </div>
+                  <img src={screenLibrary} alt="Exercise library" loading="lazy" className="mx-auto w-full max-w-[240px] rounded-[1.75rem] border border-border shadow-xl" />
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 md:p-10">
+                <div className="grid items-center gap-8 md:grid-cols-2">
+                  <div>
+                    <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">Shape your week</div>
+                    <h3 className="mt-4 text-2xl font-semibold">Tune frequency & sessions</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">Pick 2–6 training days, set session length, and PeakFit rebuilds your plan around your life.</p>
+                  </div>
+                  <img src={screenShapeWeek} alt="Shape your week" loading="lazy" className="mx-auto w-full max-w-[240px] rounded-[1.75rem] border border-border shadow-xl" />
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -549,28 +641,27 @@ function Landing() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 md:grid-cols-4">
             <div>
-              <div className="flex items-center gap-2">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary">
-                  <Dumbbell className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <span className="text-xl font-bold">PeakFit</span>
-              </div>
+              <img src={logo} alt="PeakFit" className="h-9 w-auto" />
               <p className="mt-4 max-w-xs text-sm text-muted-foreground">
                 The AI fitness ecosystem for athletes who refuse to plateau.
               </p>
             </div>
 
-            {[
-              { t: "Product", links: ["Features", "Pricing", "Integrations", "Changelog"] },
-              { t: "Company", links: ["About", "Careers", "Press", "Contact"] },
-              { t: "Legal", links: ["Privacy Policy", "Terms", "Cookies", "Security"] },
-            ].map((col) => (
+            {([
+              { t: "Product", links: [{ l: "Features", h: "/#features" }, { l: "Plans", h: "/#plans" }, { l: "Pricing", h: "/#pricing" }, { l: "FAQ", h: "/#faq" }] },
+              { t: "Download", links: [{ l: "iOS App Store", h: "#download" }, { l: "Google Play", h: "#download" }, { l: "What's new", h: "/#app" }] },
+              { t: "Legal", links: [{ l: "Privacy Policy", h: "/privacy", internal: true }, { l: "Terms & Conditions", h: "/terms", internal: true }] },
+            ] as const).map((col) => (
               <div key={col.t}>
                 <div className="text-sm font-semibold">{col.t}</div>
                 <ul className="mt-4 space-y-2.5">
-                  {col.links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{l}</a>
+                  {col.links.map((item) => (
+                    <li key={item.l}>
+                      {"internal" in item && item.internal ? (
+                        <Link to={item.h} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{item.l}</Link>
+                      ) : (
+                        <a href={item.h} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{item.l}</a>
+                      )}
                     </li>
                   ))}
                 </ul>
