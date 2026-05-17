@@ -308,6 +308,85 @@ function Landing() {
         </div>
       </section>
 
+      {/* PLANS — workout tutorial, weekly plan, 8-week */}
+      <section id="plans" className="relative py-24 md:py-32">
+        <div className="absolute inset-x-0 top-1/3 -z-10 h-96 bg-gradient-glow opacity-30 blur-3xl" />
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">Plans</div>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Tutorials, weekly splits, <span className="text-gradient">8-week programs</span>.</h2>
+            <p className="mt-4 text-muted-foreground">Step-by-step exercise guidance, a calendar you actually follow, and a personalized 8-week build that adapts to your body.</p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-8 lg:grid-cols-3">
+            {[
+              {
+                t: "Workout Tutorials",
+                d: "Form cues, target reps, sets, and rest timers — guided through every move with built-in coaching.",
+                img: screenExercise,
+                tag: "Exercise coach",
+              },
+              {
+                t: "Weekly Plan",
+                d: "Push, pull, legs, rest — your week mapped out. Tap a day and start training in two taps.",
+                img: screenWorkouts,
+                tag: "7-day split",
+              },
+              {
+                t: "8-Week Programs",
+                d: "Goal-based progression — gain muscle, cut fat, build strength. Daily targets, splits, and recovery built in.",
+                img: screen8Week,
+                tag: "Personalized",
+              },
+            ].map((p, i) => (
+              <Reveal key={p.t} delay={i * 0.08}>
+                <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-6">
+                  <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-primary opacity-0 blur-3xl transition-opacity group-hover:opacity-20" />
+                  <div className="relative">
+                    <div className="flex items-center justify-between">
+                      <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">{p.tag}</div>
+                    </div>
+                    <div className="mt-6 mx-auto w-full max-w-[260px]">
+                      <img src={p.img} alt={p.t} loading="lazy" className="w-full rounded-[1.75rem] border border-border shadow-xl" />
+                    </div>
+                    <h3 className="mt-6 text-xl font-semibold">{p.t}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{p.d}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Secondary feature row */}
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            <Reveal>
+              <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 md:p-10">
+                <div className="grid items-center gap-8 md:grid-cols-2">
+                  <div>
+                    <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">Exercise library</div>
+                    <h3 className="mt-4 text-2xl font-semibold">Browse by muscle group</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">Chest, back, legs, arms — search any lift, see proper form, and add it to today's session.</p>
+                  </div>
+                  <img src={screenLibrary} alt="Exercise library" loading="lazy" className="mx-auto w-full max-w-[240px] rounded-[1.75rem] border border-border shadow-xl" />
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 md:p-10">
+                <div className="grid items-center gap-8 md:grid-cols-2">
+                  <div>
+                    <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">Shape your week</div>
+                    <h3 className="mt-4 text-2xl font-semibold">Tune frequency & sessions</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">Pick 2–6 training days, set session length, and PeakFit rebuilds your plan around your life.</p>
+                  </div>
+                  <img src={screenShapeWeek} alt="Shape your week" loading="lazy" className="mx-auto w-full max-w-[240px] rounded-[1.75rem] border border-border shadow-xl" />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
