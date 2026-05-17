@@ -9,6 +9,10 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import peakfitLogo from "@/assets/peakfit-logo.png";
+
+const siteUrl = import.meta.env.VITE_SITE_URL?.replace(/\/$/, "");
+const socialImageUrl = siteUrl ? `${siteUrl}${peakfitLogo}` : peakfitLogo;
 
 function NotFoundComponent() {
   return (
@@ -78,12 +82,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "PeakFit — AI-Powered Fitness & Wellness App" },
       { property: "og:description", content: "Transform your body with PeakFit's AI coach, smart diet tracker, and full health sync." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      ...(siteUrl ? [{ property: "og:url", content: `${siteUrl}/` }] : []),
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@champ_96k" },
       { name: "twitter:title", content: "PeakFit — AI-Powered Fitness & Wellness App" },
       { name: "twitter:description", content: "Transform your body with PeakFit's AI coach, smart diet tracker, and full health sync." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/w9uQxjJ5ScMYUPQpLAlPGiw3VFR2/social-images/social-1779043513600-app_logo.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/w9uQxjJ5ScMYUPQpLAlPGiw3VFR2/social-images/social-1779043513600-app_logo.webp" },
+      { property: "og:site_name", content: "PeakFit" },
+      { property: "og:image", content: socialImageUrl },
+      { property: "og:image:alt", content: "PeakFit logo" },
+      { name: "twitter:image", content: socialImageUrl },
+      { name: "twitter:image:alt", content: "PeakFit logo" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

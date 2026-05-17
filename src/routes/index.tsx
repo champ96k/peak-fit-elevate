@@ -519,7 +519,10 @@ function Landing() {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
             <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">Pricing</div>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Start free. <span className="text-gradient">Go elite.</span></h2>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Start free. <span className="text-gradient">Scale with results.</span></h2>
+            <p className="mt-4 text-muted-foreground">
+              Every plan is built to deliver visible progress - from daily consistency to elite-level performance coaching.
+            </p>
 
             <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-border bg-secondary/60 p-1">
               <button
@@ -535,9 +538,47 @@ function Landing() {
 
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {[
-              { name: "Free", price: 0, desc: "Get moving today.", features: ["Basic workout tracking", "Basic calorie tracking", "Limited analytics", "Manual logging"], cta: "Get started" },
-              { name: "Pro", price: 499, desc: "For consistent results.", features: ["Everything in Free", "AI workout coach", "Unlimited analytics", "Health integrations", "Advanced nutrition tracking", "Personalized recommendations"], cta: "Start Pro trial", popular: true },
-              { name: "Elite", price: 999, desc: "Train like a pro.", features: ["Everything in Pro", "Advanced AI coaching", "Premium transformation analytics", "Early access features", "Priority support", "1:1 monthly consult"], cta: "Go Elite" },
+              {
+                name: "Free",
+                price: 0,
+                desc: "Build your fitness habit with core essentials.",
+                features: [
+                  "Unlimited workout logging",
+                  "Calories and macro tracking",
+                  "Weekly progress snapshots",
+                  "Goal and streak tracking",
+                ],
+                cta: "Start Free",
+              },
+              {
+                name: "Pro",
+                price: 499,
+                desc: "Best value for faster body transformation.",
+                features: [
+                  "Everything in Free",
+                  "AI workout coach with adaptive plans",
+                  "Advanced nutrition intelligence",
+                  "Wearable and health app sync",
+                  "Deep analytics with recovery insights",
+                  "Smart weekly plan adjustments",
+                ],
+                cta: "Start Pro Trial",
+                popular: true,
+              },
+              {
+                name: "Elite",
+                price: 999,
+                desc: "Complete high-performance coaching support.",
+                features: [
+                  "Everything in Pro",
+                  "Advanced AI coaching modes",
+                  "Premium transformation dashboards",
+                  "Priority feature access",
+                  "Priority support response",
+                  "1:1 monthly coaching consult",
+                ],
+                cta: "Join Elite",
+              },
             ].map((p, i) => (
               <Reveal key={p.name} delay={i * 0.08}>
                 <div className={`relative h-full overflow-hidden rounded-3xl border p-8 transition-all hover:-translate-y-1 ${p.popular ? "border-primary/50 bg-card glow-primary" : "border-border bg-card"}`}>
@@ -550,6 +591,11 @@ function Landing() {
                     <span className="text-5xl font-bold">₹{price(p.price)}</span>
                     {p.price > 0 && <span className="text-sm text-muted-foreground">{cadence}</span>}
                   </div>
+                  {yearly && p.price > 0 && (
+                    <p className="mt-2 text-xs font-medium text-primary">
+                      Save ₹{p.price * 2}/year with annual billing
+                    </p>
+                  )}
                   <a
                     href="#download"
                     className={`mt-6 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${p.popular ? "bg-gradient-primary text-primary-foreground" : "border border-border bg-secondary/60 text-foreground hover:bg-secondary"}`}
@@ -670,10 +716,25 @@ function Landing() {
           </div>
 
           <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
-            <div className="text-xs text-muted-foreground">© 2026 PeakFit Labs. All rights reserved.</div>
+            <div className="text-xs text-muted-foreground">© 2026 PeakFit Global. Built by Champ96k.</div>
             <div className="flex gap-3">
-              {["X", "IG", "YT", "TT"].map((s) => (
-                <a key={s} href="#" aria-label={s} className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">{s}</a>
+              {[
+                { s: "GH", h: "https://github.com/champ96k", label: "GitHub" },
+                { s: "X", h: "https://x.com/champ_96k", label: "X" },
+                { s: "IN", h: "https://www.linkedin.com/in/tushar-nikam-dev/", label: "LinkedIn" },
+                { s: "IG", h: "https://www.instagram.com/peakfit.global/", label: "Instagram" },
+                { s: "@", h: "mailto:champ96klabs@gmail.com", label: "Email" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.h}
+                  aria-label={s.label}
+                  target={s.h.startsWith("http") ? "_blank" : undefined}
+                  rel={s.h.startsWith("http") ? "noreferrer noopener" : undefined}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                >
+                  {s.s}
+                </a>
               ))}
             </div>
           </div>
