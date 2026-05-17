@@ -132,16 +132,17 @@ function Landing() {
               >
                 <a
                   href="#download"
-                  className="group inline-flex items-center gap-2 rounded-full bg-gradient-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground glow-primary transition-transform hover:scale-105"
+                  className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-105"
                 >
-                  <Smartphone className="h-4 w-4" />
-                  Download App
+                  <Apple className="h-4 w-4" />
+                  Download for iOS
                 </a>
                 <a
-                  href="#pricing"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-7 py-3.5 text-sm font-semibold backdrop-blur transition-colors hover:bg-secondary"
+                  href="#download"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground glow-primary transition-transform hover:scale-105"
                 >
-                  Start Free Trial
+                  <Play className="h-4 w-4 fill-primary-foreground" />
+                  Download for Android
                 </a>
               </motion.div>
 
