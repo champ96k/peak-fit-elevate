@@ -641,28 +641,27 @@ function Landing() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 md:grid-cols-4">
             <div>
-              <div className="flex items-center gap-2">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary">
-                  <Dumbbell className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <span className="text-xl font-bold">PeakFit</span>
-              </div>
+              <img src={logo} alt="PeakFit" className="h-9 w-auto" />
               <p className="mt-4 max-w-xs text-sm text-muted-foreground">
                 The AI fitness ecosystem for athletes who refuse to plateau.
               </p>
             </div>
 
-            {[
-              { t: "Product", links: ["Features", "Pricing", "Integrations", "Changelog"] },
-              { t: "Company", links: ["About", "Careers", "Press", "Contact"] },
-              { t: "Legal", links: ["Privacy Policy", "Terms", "Cookies", "Security"] },
-            ].map((col) => (
+            {([
+              { t: "Product", links: [{ l: "Features", h: "/#features" }, { l: "Plans", h: "/#plans" }, { l: "Pricing", h: "/#pricing" }, { l: "FAQ", h: "/#faq" }] },
+              { t: "Download", links: [{ l: "iOS App Store", h: "#download" }, { l: "Google Play", h: "#download" }, { l: "What's new", h: "/#app" }] },
+              { t: "Legal", links: [{ l: "Privacy Policy", h: "/privacy", internal: true }, { l: "Terms & Conditions", h: "/terms", internal: true }] },
+            ] as const).map((col) => (
               <div key={col.t}>
                 <div className="text-sm font-semibold">{col.t}</div>
                 <ul className="mt-4 space-y-2.5">
-                  {col.links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{l}</a>
+                  {col.links.map((item) => (
+                    <li key={item.l}>
+                      {"internal" in item && item.internal ? (
+                        <Link to={item.h} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{item.l}</Link>
+                      ) : (
+                        <a href={item.h} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{item.l}</a>
+                      )}
                     </li>
                   ))}
                 </ul>
