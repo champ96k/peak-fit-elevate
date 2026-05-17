@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Dumbbell } from "lucide-react";
+import { Menu, X, Apple, Play } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import logo from "@/assets/peakfit-logo.png";
 
 const links = [
-  { label: "Features", href: "#features" },
-  { label: "App", href: "#app" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Features", href: "/#features" },
+  { label: "App", href: "/#app" },
+  { label: "Plans", href: "/#plans" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export function Navbar() {
@@ -28,15 +31,12 @@ export function Navbar() {
         scrolled ? "glass border-b border-border" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary">
-            <Dumbbell className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <span className="text-xl font-bold tracking-tight">PeakFit</span>
-        </a>
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="PeakFit" className="h-9 w-auto" />
+        </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
             <a
               key={l.label}
@@ -48,18 +48,18 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
           <a
-            href="#pricing"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            href="#download"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background transition-transform hover:scale-105"
           >
-            Sign in
+            <Apple className="h-4 w-4" /> iOS
           </a>
           <a
             href="#download"
-            className="rounded-full bg-gradient-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-105"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-transform hover:scale-105"
           >
-            Get the app
+            <Play className="h-4 w-4 fill-primary-foreground" /> Android
           </a>
         </div>
 
@@ -85,13 +85,14 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
-            <a
-              href="#download"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-gradient-primary px-5 py-2 text-center text-sm font-semibold text-primary-foreground"
-            >
-              Get the app
-            </a>
+            <div className="mt-2 grid grid-cols-2 gap-2">
+              <a href="#download" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background">
+                <Apple className="h-4 w-4" /> iOS
+              </a>
+              <a href="#download" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-xs font-semibold text-primary-foreground">
+                <Play className="h-4 w-4 fill-primary-foreground" /> Android
+              </a>
+            </div>
           </div>
         </div>
       )}
