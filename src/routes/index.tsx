@@ -696,7 +696,7 @@ function Landing() {
             {([
               { t: "Product", links: [{ l: "Features", h: "/#features" }, { l: "Plans", h: "/#plans" }, { l: "Pricing", h: "/#pricing" }, { l: "FAQ", h: "/#faq" }] },
               { t: "Download", links: [{ l: "iOS App Store", h: "#download" }, { l: "Google Play", h: "#download" }, { l: "What's new", h: "/#app" }] },
-              { t: "Legal", links: [{ l: "Privacy Policy", h: "/privacy", internal: true }, { l: "Terms & Conditions", h: "/terms", internal: true }] },
+              { t: "Legal", links: [{ l: "About Us", h: "/about-us", internal: true }, { l: "Privacy Policy", h: "/privacy", internal: true }, { l: "Terms & Conditions", h: "/terms", internal: true }] },
             ] as const).map((col) => (
               <div key={col.t}>
                 <div className="text-sm font-semibold">{col.t}</div>
