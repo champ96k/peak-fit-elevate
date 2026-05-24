@@ -32,8 +32,12 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
-        <Link to="/" className="flex items-center">
-          <img src={logo} alt="PeakFit" className="h-9 w-auto" />
+        <Link
+          to="/"
+          className="flex items-center rounded-2xl bg-slate-950 px-3 py-2 shadow-sm"
+          aria-label="PeakFit home"
+        >
+          <img src={logo} alt="PeakFit" className="h-7 w-auto" />
         </Link>
 
         <div className="hidden items-center gap-8 lg:flex">
@@ -63,11 +67,7 @@ export function Navbar() {
           </a>
         </div>
 
-        <button
-          aria-label="Toggle menu"
-          onClick={() => setOpen((v) => !v)}
-          className="md:hidden"
-        >
+        <button aria-label="Toggle menu" onClick={() => setOpen((v) => !v)} className="md:hidden">
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
@@ -86,10 +86,18 @@ export function Navbar() {
               </a>
             ))}
             <div className="mt-2 grid grid-cols-2 gap-2">
-              <a href="#download" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background">
+              <a
+                href="#download"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background"
+              >
                 <Apple className="h-4 w-4" /> iOS
               </a>
-              <a href="#download" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-xs font-semibold text-primary-foreground">
+              <a
+                href="#download"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-xs font-semibold text-primary-foreground"
+              >
                 <Play className="h-4 w-4 fill-primary-foreground" /> Android
               </a>
             </div>

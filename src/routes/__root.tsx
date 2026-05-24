@@ -77,16 +77,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "PeakFit — AI-Powered Fitness & Wellness App" },
-      { name: "description", content: "Transform your body with PeakFit's AI coach, smart diet tracker, and full health sync." },
+      {
+        name: "description",
+        content:
+          "Transform your body with PeakFit's AI coach, smart diet tracker, and full health sync.",
+      },
       { name: "author", content: "PeakFit" },
       { property: "og:title", content: "PeakFit — AI-Powered Fitness & Wellness App" },
-      { property: "og:description", content: "Transform your body with PeakFit's AI coach, smart diet tracker, and full health sync." },
+      {
+        property: "og:description",
+        content:
+          "Transform your body with PeakFit's AI coach, smart diet tracker, and full health sync.",
+      },
       { property: "og:type", content: "website" },
       ...(siteUrl ? [{ property: "og:url", content: `${siteUrl}/` }] : []),
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@champ_96k" },
       { name: "twitter:title", content: "PeakFit — AI-Powered Fitness & Wellness App" },
-      { name: "twitter:description", content: "Transform your body with PeakFit's AI coach, smart diet tracker, and full health sync." },
+      {
+        name: "twitter:description",
+        content:
+          "Transform your body with PeakFit's AI coach, smart diet tracker, and full health sync.",
+      },
       { property: "og:site_name", content: "PeakFit" },
       { property: "og:image", content: socialImageUrl },
       { property: "og:image:alt", content: "PeakFit logo" },
@@ -96,7 +108,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap",
+      },
       { rel: "stylesheet", href: appCss },
     ],
   }),

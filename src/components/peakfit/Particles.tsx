@@ -48,5 +48,7 @@ export function Particles() {
     };
   }, []);
 
-  return <canvas ref={ref} className="pointer-events-none absolute inset-0 h-full w-full opacity-60" />;
+  return (
+    <canvas ref={ref} className="pointer-events-none absolute inset-0 h-full w-full opacity-60" />
+  );
 }

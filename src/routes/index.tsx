@@ -1,37 +1,78 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Activity, Apple, Award, Brain, ChevronDown, Droplet, Dumbbell, Flame,
-  Footprints, Heart, LineChart, Moon, Salad, Star, Target, Trophy, Watch,
-  Zap, Check, Play,
+  Activity,
+  Apple,
+  Award,
+  Bell,
+  Brain,
+  CalendarDays,
+  Check,
+  ChevronDown,
+  Droplet,
+  Dumbbell,
+  Flame,
+  Footprints,
+  Heart,
+  LineChart,
+  Moon,
+  Play,
+  QrCode,
+  Salad,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Trophy,
+  Watch,
+  Zap,
+  type LucideIcon,
 } from "lucide-react";
 import { Navbar } from "@/components/peakfit/Navbar";
 import { Counter } from "@/components/peakfit/Counter";
 import { Particles } from "@/components/peakfit/Particles";
 import { Reveal } from "@/components/peakfit/Reveal";
 import logo from "@/assets/peakfit-logo.png";
-import heroAthlete from "@/assets/hero-athlete.jpg";
-import screenHome from "@/assets/screen-home.png";
-import screenDiet from "@/assets/screen-diet.png";
-import screenProgress from "@/assets/screen-progress.png";
-import screenWorkouts from "@/assets/screen-workouts.png";
-import screenExercise from "@/assets/screen-exercise.png";
-import screenLibrary from "@/assets/screen-library.png";
-import screenShapeWeek from "@/assets/screen-shape-week.png";
-import screen8Week from "@/assets/screen-8week.png";
-import screenProfile from "@/assets/screen-profile.png";
-import test1 from "@/assets/testimonial-1.jpg";
-import test2 from "@/assets/testimonial-2.jpg";
-import test3 from "@/assets/testimonial-3.jpg";
+import appHomeDashboard from "@/assets/app-home-dashboard.png";
+import appWorkoutDay from "@/assets/app-workout-day.png";
+import appWorkoutBuilder from "@/assets/app-workout-builder.png";
+import appDietDashboard from "@/assets/app-diet-dashboard.png";
+import appBreakfastDetail from "@/assets/app-breakfast-detail.png";
+import appNutritionFacts from "@/assets/app-nutrition-facts.png";
+import appProgressOverview from "@/assets/app-progress-overview.png";
+import appStepStats from "@/assets/app-step-stats.png";
+import appSleepOverview from "@/assets/app-sleep-overview.png";
+import appSleepDetail from "@/assets/app-sleep-detail.png";
+import appBodyProgress from "@/assets/app-body-progress.png";
+import appNutritionProgress from "@/assets/app-nutrition-progress.png";
+import appBodySummary from "@/assets/app-body-summary.png";
+import appAppleHealth from "@/assets/app-apple-health.png";
+import appNotifications from "@/assets/app-notifications.png";
+import appExerciseLibrary from "@/assets/app-exercise-library.png";
+import appShapeWeek from "@/assets/app-shape-week.png";
+import appEightWeekPlan from "@/assets/app-eight-week-plan.png";
+import appOnboardingWelcome from "@/assets/app-onboarding-welcome.png";
+import appOnboardingGoals from "@/assets/app-onboarding-goals.png";
+import appOnboardingDiet from "@/assets/app-onboarding-diet.png";
+import appOnboardingBodyType from "@/assets/app-onboarding-body-type.png";
+import appOnboardingGender from "@/assets/app-onboarding-gender.png";
+import appOnboardingWeight from "@/assets/app-onboarding-weight.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PeakFit — AI-Powered Fitness & Wellness App" },
-      { name: "description", content: "Transform your body with PeakFit's AI workout coach, smart diet tracker, health sync, and personalized plans. Download now." },
-      { property: "og:title", content: "PeakFit — Transform Your Body. Upgrade Your Life." },
-      { property: "og:description", content: "AI-powered fitness tracking, nutrition insights, health sync and personalized plans." },
+      { title: "PeakFit - AI-Powered Fitness & Wellness App" },
+      {
+        name: "description",
+        content:
+          "Explore PeakFit app screens for workouts, nutrition, recovery, health sync, onboarding, and progress tracking.",
+      },
+      { property: "og:title", content: "PeakFit - Train, eat, recover, and progress smarter." },
+      {
+        property: "og:description",
+        content:
+          "A complete app tour of PeakFit's AI fitness, nutrition, recovery, and progress tools.",
+      },
       { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -39,373 +80,555 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const features = [
-  { icon: Brain, title: "AI Workout Coach", desc: "Adaptive training plans that learn from your performance." },
-  { icon: Salad, title: "Smart Diet Tracker", desc: "Snap, log, and analyze meals with computer vision." },
-  { icon: Flame, title: "Calories & Macros", desc: "Real-time macro splits dialed to your goal." },
-  { icon: Activity, title: "Health Sync", desc: "Apple Health & Health Connect, seamless." },
-  { icon: Watch, title: "Wearable Support", desc: "Apple Watch, Garmin, Fitbit, WHOOP." },
-  { icon: Moon, title: "Sleep Monitoring", desc: "Recovery scores tied to your next session." },
-  { icon: LineChart, title: "Progress Analytics", desc: "Beautiful weekly insights, zero spreadsheets." },
-  { icon: Target, title: "Personalized Plans", desc: "Built around your body, schedule, and gear." },
-  { icon: Zap, title: "Daily Insights", desc: "Bite-sized coaching tailored to your day." },
-  { icon: Droplet, title: "Water Tracking", desc: "Hydration goals with smart nudges." },
-  { icon: Footprints, title: "Step Counter", desc: "Background tracking, all-day accurate." },
-  { icon: Heart, title: "Heart Rate", desc: "Zone training and continuous monitoring." },
-  { icon: Trophy, title: "Goal Tracking", desc: "Streaks, milestones, achievements." },
-  { icon: Award, title: "Challenges", desc: "Compete with friends or yourself." },
-  { icon: Dumbbell, title: "Gym & Home", desc: "Switch modes, never miss a session." },
-  { icon: Apple, title: "Workout History", desc: "Every rep, every set, forever." },
+type ScreenFeature = {
+  src: string;
+  title: string;
+  description: string;
+};
+
+type FeatureGroup = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  screens: ScreenFeature[];
+};
+
+const topFeatures: Array<{ icon: LucideIcon; title: string; desc: string }> = [
+  {
+    icon: Brain,
+    title: "AI Coach",
+    desc: "Daily guidance based on your plan, calories, activity, and recovery.",
+  },
+  {
+    icon: Dumbbell,
+    title: "Workout Plans",
+    desc: "Daily workouts, custom splits, exercise library, and 8-week programs.",
+  },
+  {
+    icon: Salad,
+    title: "Smart Diet",
+    desc: "Calories, macros, meal details, and nutrition facts in one clean flow.",
+  },
+  {
+    icon: LineChart,
+    title: "Progress Analytics",
+    desc: "Weight, burn, streaks, steps, sleep, and nutrition trends made simple.",
+  },
+  {
+    icon: Watch,
+    title: "Health Sync",
+    desc: "Connect Apple Health and supported wearables when you want deeper tracking.",
+  },
+  {
+    icon: Bell,
+    title: "Reminders",
+    desc: "Control workout, diet, hydration, sleep, and progress nudges.",
+  },
+  {
+    icon: Target,
+    title: "Personal Goals",
+    desc: "Onboarding shapes the app around your goal, body, diet, and schedule.",
+  },
+  {
+    icon: Trophy,
+    title: "Consistency",
+    desc: "Streaks, achievements, and simple feedback loops keep you moving.",
+  },
 ];
 
-const integrations = ["Apple Health", "Health Connect", "Fitbit", "Garmin", "WHOOP", "Wear OS"];
+const showcaseGroups: FeatureGroup[] = [
+  {
+    eyebrow: "Home and AI coach",
+    title: "Your plan, coach note, and daily metrics in one clean home screen.",
+    description:
+      "The Home screen opens with today's workout, live nutrition targets, AI insight, and a coach note so the next action is obvious.",
+    icon: Brain,
+    screens: [
+      {
+        src: appHomeDashboard,
+        title: "Home Dashboard",
+        description: "Morning greeting, today's workout, AI insight, coach note, and key metrics.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Workouts and plans",
+    title: "Workout planning that moves from today's session to an 8-week goal.",
+    description:
+      "PeakFit presents the training flow as a guided path: build the split, browse exercises, shape the week, and follow the program.",
+    icon: Dumbbell,
+    screens: [
+      {
+        src: appWorkoutDay,
+        title: "Workout Day",
+        description: "A focused daily workout list with warm-ups, sets, and session structure.",
+      },
+      {
+        src: appWorkoutBuilder,
+        title: "Plan Builder",
+        description: "Users choose target muscles and shape sessions around real training goals.",
+      },
+      {
+        src: appExerciseLibrary,
+        title: "Exercise Library",
+        description: "Browse exercises by muscle group and quickly add movements to a workout.",
+      },
+      {
+        src: appShapeWeek,
+        title: "Shape Your Week",
+        description: "Pick training days, session length, and the weekly split that fits life.",
+      },
+      {
+        src: appEightWeekPlan,
+        title: "8-Week Plan",
+        description:
+          "A full program summary with progression, week count, and goal-based direction.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Diet and nutrition",
+    title: "Calories, macros, and meal details that are easy to act on.",
+    description:
+      "Nutrition screens keep the big numbers visible first, then let users drill into meals and nutrition facts only when they need more detail.",
+    icon: Salad,
+    screens: [
+      {
+        src: appDietDashboard,
+        title: "Diet Dashboard",
+        description:
+          "Remaining calories, eaten calories, burned calories, macros, and meals logged.",
+      },
+      {
+        src: appBreakfastDetail,
+        title: "Meal Detail",
+        description: "Open a meal to review calories, macros, ingredients, and food-level context.",
+      },
+      {
+        src: appNutritionFacts,
+        title: "Nutrition Facts",
+        description: "Detailed nutrition view for users who want deeper meal information.",
+      },
+      {
+        src: appNutritionProgress,
+        title: "Nutrition Progress",
+        description: "Average calories and weekly nutrition trends help users stay consistent.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Progress and recovery",
+    title: "Progress tracking across body, movement, sleep, and recovery.",
+    description:
+      "Progress is shown as connected habits instead of separate charts, making streaks, steps, sleep, calories, and body trends easier to understand.",
+    icon: LineChart,
+    screens: [
+      {
+        src: appProgressOverview,
+        title: "Progress Overview",
+        description: "Streaks and health cards summarize the user's fitness direction.",
+      },
+      {
+        src: appStepStats,
+        title: "Step Stats",
+        description: "Weekly step charts give users an easy view of daily movement.",
+      },
+      {
+        src: appSleepOverview,
+        title: "Sleep Overview",
+        description: "Sleep summary cards help users understand recovery patterns.",
+      },
+      {
+        src: appSleepDetail,
+        title: "Sleep Detail",
+        description: "Sleep stages and highlights add context to recovery quality.",
+      },
+      {
+        src: appBodyProgress,
+        title: "Body Progress",
+        description: "Burn, calories, and weight trends show how body goals are moving.",
+      },
+      {
+        src: appBodySummary,
+        title: "Body Summary",
+        description: "A quick body and progress summary with social motivation built in.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Health sync and reminders",
+    title: "Bring health data in and keep daily habits on track.",
+    description:
+      "The app gives users a simple connected-health setup and clear reminder controls for workouts, diet, hydration, sleep, and progress.",
+    icon: ShieldCheck,
+    screens: [
+      {
+        src: appAppleHealth,
+        title: "Apple Health Sync",
+        description: "A clean connected state for importing supported health signals.",
+      },
+      {
+        src: appNotifications,
+        title: "Notification Settings",
+        description:
+          "Granular toggles for reminders across workouts, meals, hydration, sleep, and progress.",
+      },
+    ],
+  },
+  {
+    eyebrow: "Personal onboarding",
+    title: "Personal onboarding that builds the plan around the user.",
+    description:
+      "PeakFit captures goals, diet style, body context, gender, and weight so the first plan feels tailored from the beginning.",
+    icon: Sparkles,
+    screens: [
+      {
+        src: appOnboardingWelcome,
+        title: "Welcome Flow",
+        description: "Introduces PeakFit as a plan-based coach for workouts and nutrition.",
+      },
+      {
+        src: appOnboardingGoals,
+        title: "Goal Selection",
+        description: "Users choose the transformation outcome they want to prioritize.",
+      },
+      {
+        src: appOnboardingDiet,
+        title: "Diet Preference",
+        description: "Nutrition guidance adapts around the eating style users follow.",
+      },
+      {
+        src: appOnboardingBodyType,
+        title: "Body Type",
+        description: "Body context helps personalize the starting point and coaching tone.",
+      },
+      {
+        src: appOnboardingGender,
+        title: "Gender Selection",
+        description: "Personal details support more relevant recommendations and calculations.",
+      },
+      {
+        src: appOnboardingWeight,
+        title: "Weight Entry",
+        description: "The baseline weight starts progress charts and plan calibration.",
+      },
+    ],
+  },
+];
 
-const testimonials = [
-  { name: "Aarav Mehta", role: "Lost 18kg in 6 months", img: test2, quote: "PeakFit's AI coach pushed me harder than any trainer. The transformation analytics kept me obsessed." , rating: 5 },
-  { name: "Sara Kapoor", role: "Marathon runner", img: test3, quote: "Sleep + recovery sync changed everything. I PR'd by 9 minutes in 3 months.", rating: 5 },
-  { name: "Maya Iyer", role: "Yoga & strength", img: test1, quote: "Macro tracking is genuinely effortless. I finally hit my protein every single day.", rating: 5 },
+const integrations = ["Apple Health", "Health Connect", "Apple Watch", "Garmin", "Fitbit", "WHOOP"];
+
+const reviews = [
+  {
+    name: "Aarav Mehta",
+    role: "Lost 18kg in 6 months",
+    quote: "The daily coach note makes the app feel personal. I always know what to focus on next.",
+  },
+  {
+    name: "Sara Kapoor",
+    role: "Marathon runner",
+    quote:
+      "Sleep, steps, workouts, and nutrition finally sit in one place instead of five different apps.",
+  },
+  {
+    name: "Maya Iyer",
+    role: "Strength and yoga",
+    quote:
+      "The nutrition screens are simple enough to use daily, but detailed when I want to review macros.",
+  },
 ];
 
 const faqs = [
-  { q: "Is PeakFit beginner friendly?", a: "Absolutely. Our AI calibrates from your first session and ramps you up safely." },
-  { q: "Does it support smart watches?", a: "Yes — Apple Watch, Wear OS, Garmin, Fitbit, and WHOOP are all natively supported." },
-  { q: "Can I sync Apple Health?", a: "One-tap sync with Apple Health and Google Health Connect, both ways." },
-  { q: "Does it work offline?", a: "Workouts, logs, and timers work fully offline and sync once you're back online." },
-  { q: "Is there a free version?", a: "Yes — Free forever with core tracking. Upgrade anytime for AI coaching and analytics." },
+  {
+    q: "Is PeakFit beginner friendly?",
+    a: "Yes. Onboarding gathers your goals, schedule, diet, and body context so the plan starts from your level.",
+  },
+  {
+    q: "Does the app include real workout plans?",
+    a: "Yes. PeakFit includes daily workouts, plan creation, exercise browsing, weekly planning, and 8-week programs.",
+  },
+  {
+    q: "Can I track diet and macros?",
+    a: "Yes. The diet dashboard covers calories, macros, meals, nutrition details, and weekly nutrition progress.",
+  },
+  {
+    q: "Does PeakFit sync health data?",
+    a: "The app includes a connected Apple Health flow and is designed for supported health and wearable integrations.",
+  },
+  {
+    q: "Is the QR code live?",
+    a: "The QR code shown here is a placeholder for now. Replace it with the final store link when the app download URL is ready.",
+  },
 ];
 
+const qrPattern = [
+  "11111110111111",
+  "10000110100001",
+  "10110100101101",
+  "10110110101101",
+  "10000100100001",
+  "11111110111111",
+  "00000000000000",
+  "10101111010110",
+  "01110010111001",
+  "11001101100110",
+  "00110111001011",
+  "11100100111100",
+  "10011101000111",
+  "11010011101010",
+];
+
+type BillingCycle = "monthly" | "yearly" | "lifetime";
+type CurrencyRegion = "IN" | "US";
+
+const pricingByRegion: Record<
+  CurrencyRegion,
+  {
+    symbol: string;
+    yearlySavings: string;
+    prices: Record<BillingCycle, number>;
+  }
+> = {
+  IN: {
+    symbol: "₹",
+    yearlySavings: "save 41%",
+    prices: { monthly: 99, yearly: 699, lifetime: 1999 },
+  },
+  US: {
+    symbol: "$",
+    yearlySavings: "save 42%",
+    prices: { monthly: 4.99, yearly: 34.99, lifetime: 79 },
+  },
+};
+
+const billingLabels: Array<{ id: BillingCycle; label: string }> = [
+  { id: "monthly", label: "Monthly" },
+  { id: "yearly", label: "Yearly" },
+  { id: "lifetime", label: "Lifetime" },
+];
+
+function formatPlanPrice(value: number, symbol: string) {
+  return `${symbol}${Number.isInteger(value) ? value.toLocaleString("en-US") : value.toFixed(2)}`;
+}
+
+function formatOfferCountdown(totalSeconds: number) {
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+  return `${days}d ${hours}h ${minutes}m`;
+}
+
 function Landing() {
-  const [yearly, setYearly] = useState(false);
+  const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
+  const [currencyRegion, setCurrencyRegion] = useState<CurrencyRegion>("IN");
+  const [offerSecondsLeft, setOfferSecondsLeft] = useState(3 * 24 * 60 * 60);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const price = (m: number) => yearly ? Math.round(m * 10) : m;
-  const cadence = yearly ? "/year" : "/month";
+  useEffect(() => {
+    const languages = typeof navigator !== "undefined" ? navigator.languages : [];
+    const language = typeof navigator !== "undefined" ? navigator.language : "";
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const region = Intl.DateTimeFormat().resolvedOptions().locale.split("-").pop();
+    const localeSuggestsIndia = [...languages, language].some((locale) =>
+      /(^|\b)(en-IN|hi|mr|ta|te|kn|ml|bn|gu|pa)(\b|-|$)/i.test(locale),
+    );
+
+    setCurrencyRegion(
+      localeSuggestsIndia ||
+        timeZone === "Asia/Kolkata" ||
+        timeZone === "Asia/Calcutta" ||
+        region === "IN"
+        ? "IN"
+        : "US",
+    );
+  }, []);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setOfferSecondsLeft((current) => Math.max(current - 60, 0));
+    }, 60000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  const currency = pricingByRegion[currencyRegion];
+  const cadence = {
+    monthly: "/mo",
+    yearly: "/yr",
+    lifetime: "one-time",
+  }[billingCycle];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      {/* HERO */}
-      <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
+      <section className="relative overflow-hidden px-6 pb-20 pt-32 md:pb-28 md:pt-40">
         <div className="absolute inset-0 bg-hero-glow" />
-        <div className="absolute inset-0 grid-bg opacity-40" />
+        <div className="absolute inset-0 grid-bg opacity-45" />
         <Particles />
 
-        <div className="relative mx-auto max-w-7xl px-6">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur"
-              >
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
-                AI fitness, built for 2026
-              </motion.div>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr]">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-4 py-1.5 text-xs font-semibold text-muted-foreground shadow-sm backdrop-blur"
+            >
+              <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+              App-first AI fitness experience
+            </motion.div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl"
-              >
-                Transform Your Body.<br />
-                <span className="text-gradient">Upgrade Your Life.</span>
-              </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-foreground md:text-7xl"
+            >
+              Train with a plan that is built for <span className="text-gradient">you.</span>
+            </motion.h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="mt-6 max-w-xl text-lg text-muted-foreground"
-              >
-                PeakFit is the AI-powered fitness ecosystem that tracks every workout, meal,
-                heartbeat and hour of sleep — then coaches you to your strongest self.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="mt-8 flex flex-wrap items-center gap-4"
-              >
-                <a
-                  href="#download"
-                  className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-105"
-                >
-                  <Apple className="h-4 w-4" />
-                  Download for iOS
-                </a>
-                <a
-                  href="#download"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground glow-primary transition-transform hover:scale-105"
-                >
-                  <Play className="h-4 w-4 fill-primary-foreground" />
-                  Download for Android
-                </a>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8"
-              >
-                {[
-                  { n: 100, s: "K+", l: "Workouts tracked" },
-                  { n: 50, s: "K+", l: "Active users" },
-                  { n: 10, s: "M+", l: "Calories tracked" },
-                ].map((s) => (
-                  <div key={s.l}>
-                    <div className="text-2xl font-bold md:text-3xl">
-                      <Counter to={s.n} suffix={s.s} />
-                    </div>
-                    <div className="mt-1 text-xs text-muted-foreground md:text-sm">{s.l}</div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground"
+            >
+              PeakFit brings workouts, diet, sleep, steps, health sync, and AI coaching into a clean
+              mobile app that feels familiar from the first tap.
+            </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-8 flex flex-wrap items-center gap-4"
             >
-              <div className="absolute -inset-12 bg-gradient-glow opacity-70 blur-3xl" />
-              <div className="relative">
-                <div className="absolute -left-6 top-10 z-10 hidden rounded-2xl glass px-4 py-3 md:block animate-[float_6s_ease-in-out_infinite]">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/20">
-                      <Heart className="h-4 w-4 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">Heart Rate</div>
-                      <div className="text-sm font-semibold">142 <span className="text-xs text-muted-foreground">bpm</span></div>
-                    </div>
-                  </div>
+              <a
+                href="#download"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-105"
+              >
+                <Apple className="h-4 w-4" />
+                Download for iOS
+              </a>
+              <a
+                href="#download"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold text-foreground shadow-sm transition-transform hover:scale-105"
+              >
+                <Play className="h-4 w-4 fill-foreground" />
+                Download for Android
+              </a>
+            </motion.div>
+
+            <motion.a
+              href="#download"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-6 flex max-w-md items-center gap-4 rounded-3xl border border-border bg-card/90 p-4 shadow-sm backdrop-blur transition-transform hover:-translate-y-1 hover:shadow-xl"
+            >
+              <DummyQrCode compact />
+              <div>
+                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                  <QrCode className="h-4 w-4 text-primary" />
+                  Scan to download PeakFit
                 </div>
-                <div className="absolute -right-4 bottom-16 z-10 hidden rounded-2xl glass px-4 py-3 md:block animate-[float_7s_ease-in-out_infinite_0.5s]">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent/20">
-                      <Flame className="h-4 w-4 text-accent" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">Calories</div>
-                      <div className="text-sm font-semibold">487 <span className="text-xs text-muted-foreground">kcal</span></div>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src={heroAthlete}
-                  alt="Athlete training with PeakFit"
-                  width={1536}
-                  height={1536}
-                  className="relative w-full rounded-3xl border border-border object-cover"
-                />
+                <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                  Dummy QR for now. Replace it with the final App Store or Play Store link later.
+                </p>
               </div>
+            </motion.a>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-border pt-8"
+            >
+              {[
+                { n: 24, s: "", l: "App screens" },
+                { n: 50, s: "K+", l: "Active users" },
+                { n: 8, s: "wk", l: "Plan cycles" },
+              ].map((s) => (
+                <div key={s.l} className="rounded-2xl bg-card/80 p-4 shadow-sm">
+                  <div className="text-2xl font-bold md:text-3xl">
+                    <Counter to={s.n} suffix={s.s} />
+                  </div>
+                  <div className="mt-1 text-xs text-muted-foreground md:text-sm">{s.l}</div>
+                </div>
+              ))}
             </motion.div>
           </div>
 
-          {/* Trust strip */}
-          <div className="mt-24">
-            <Reveal>
-              <div className="flex flex-col items-center gap-6">
-                <div className="flex items-center gap-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-primary text-primary" />
-                  ))}
-                  <span className="ml-2 text-sm text-muted-foreground">
-                    <span className="font-semibold text-foreground">4.9</span> from 28,000+ reviews
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 opacity-60">
-                  {["TechCrunch", "Forbes", "Men's Health", "Wired", "Vogue", "GQ"].map((b) => (
-                    <span key={b} className="text-sm font-semibold tracking-widest text-muted-foreground">{b.toUpperCase()}</span>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURES */}
-      <section id="features" className="relative py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">Features</div>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Everything you need.<br /><span className="text-gradient">Nothing you don't.</span></h2>
-            <p className="mt-4 text-muted-foreground">Sixteen tools, one ecosystem. Built to replace your entire fitness stack.</p>
-          </Reveal>
-
-          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((f, i) => (
-              <Reveal key={f.title} delay={i * 0.04}>
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40">
-                  <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-primary opacity-0 blur-3xl transition-opacity group-hover:opacity-30" />
-                  <div className="relative">
-                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-primary text-primary-foreground">
-                      <f.icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-4 text-base font-semibold">{f.title}</h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{f.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* APP PREVIEW */}
-      <section id="app" className="relative py-24 md:py-32">
-        <div className="absolute inset-x-0 top-1/2 -z-10 h-96 -translate-y-1/2 bg-gradient-glow opacity-40 blur-3xl" />
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">The app</div>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Designed like an <span className="text-gradient">athlete</span>.</h2>
-            <p className="mt-4 text-muted-foreground">Every screen built for clarity, speed, and one-handed flow.</p>
-          </Reveal>
-
-          <div className="mt-16 grid items-end gap-8 md:grid-cols-3">
-            {[
-              { src: screenHome, label: "Home — Daily snapshot" },
-              { src: screenDiet, label: "Diet — Macros & meals" },
-              { src: screenProgress, label: "Progress — Trends & weight" },
-            ].map((s, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <div className={`relative ${i === 1 ? "md:-mt-12" : ""}`}>
-                  <div className="absolute -inset-4 bg-gradient-glow opacity-50 blur-2xl" />
-                  <img
-                    src={s.src}
-                    alt={s.label}
-                    loading="lazy"
-                    width={886}
-                    height={1918}
-                    className="relative w-full rounded-[2rem] border border-border object-cover shadow-2xl"
-                  />
-                  <div className="mt-4 text-center text-xs text-muted-foreground">{s.label}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Promo video placeholder */}
-          <Reveal>
-            <div className="mt-20 group relative mx-auto aspect-video max-w-4xl overflow-hidden rounded-3xl border border-border glass">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20" />
-              <img src={heroAthlete} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-primary glow-primary transition-transform group-hover:scale-110">
-                  <Play className="ml-1 h-7 w-7 fill-primary-foreground text-primary-foreground" />
-                </button>
-              </div>
-              <div className="absolute bottom-6 left-6 text-sm font-medium text-foreground/80">Watch PeakFit in action — 90s</div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative min-h-[620px]"
+          >
+            <div className="absolute left-1/2 top-8 w-[46%] -translate-x-1/2 md:w-[40%]">
+              <PhoneFrame
+                src={appOnboardingWelcome}
+                alt="PeakFit onboarding welcome screen"
+                priority
+              />
             </div>
-          </Reveal>
+            <div className="absolute left-0 top-28 hidden w-[42%] -rotate-6 md:block">
+              <PhoneFrame src={appHomeDashboard} alt="PeakFit home dashboard screen" priority />
+            </div>
+            <div className="absolute right-0 top-32 hidden w-[42%] rotate-6 md:block">
+              <PhoneFrame src={appDietDashboard} alt="PeakFit diet dashboard screen" priority />
+            </div>
+            <div className="absolute left-4 top-16 z-20 rounded-2xl bg-card/90 px-4 py-3 shadow-xl backdrop-blur md:left-10">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15">
+                  <Heart className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Today's focus</div>
+                  <div className="text-sm font-semibold">Protein + push day</div>
+                </div>
+              </div>
+            </div>
+            <div className="absolute bottom-8 right-6 z-20 rounded-2xl bg-card/90 px-4 py-3 shadow-xl backdrop-blur">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15">
+                  <Flame className="h-5 w-5 text-accent" />
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Progress</div>
+                  <div className="text-sm font-semibold">7-day rhythm</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* PLANS — workout tutorial, weekly plan, 8-week */}
-      <section id="plans" className="relative py-24 md:py-32">
-        <div className="absolute inset-x-0 top-1/3 -z-10 h-96 bg-gradient-glow opacity-30 blur-3xl" />
+      <section id="features" className="relative py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">Plans</div>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Tutorials, weekly splits, <span className="text-gradient">8-week programs</span>.</h2>
-            <p className="mt-4 text-muted-foreground">Step-by-step exercise guidance, a calendar you actually follow, and a personalized 8-week build that adapts to your body.</p>
+            <Badge>Features</Badge>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+              Everything in the app has a job.
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              From onboarding to analytics, every screen helps users understand what to do, why it
+              matters, and what changed.
+            </p>
           </Reveal>
 
-          <div className="mt-16 grid gap-8 lg:grid-cols-3">
-            {[
-              {
-                t: "Workout Tutorials",
-                d: "Form cues, target reps, sets, and rest timers — guided through every move with built-in coaching.",
-                img: screenExercise,
-                tag: "Exercise coach",
-              },
-              {
-                t: "Weekly Plan",
-                d: "Push, pull, legs, rest — your week mapped out. Tap a day and start training in two taps.",
-                img: screenWorkouts,
-                tag: "7-day split",
-              },
-              {
-                t: "8-Week Programs",
-                d: "Goal-based progression — gain muscle, cut fat, build strength. Daily targets, splits, and recovery built in.",
-                img: screen8Week,
-                tag: "Personalized",
-              },
-            ].map((p, i) => (
-              <Reveal key={p.t} delay={i * 0.08}>
-                <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-6">
-                  <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-primary opacity-0 blur-3xl transition-opacity group-hover:opacity-20" />
-                  <div className="relative">
-                    <div className="flex items-center justify-between">
-                      <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">{p.tag}</div>
-                    </div>
-                    <div className="mt-6 mx-auto w-full max-w-[260px]">
-                      <img src={p.img} alt={p.t} loading="lazy" className="w-full rounded-[1.75rem] border border-border shadow-xl" />
-                    </div>
-                    <h3 className="mt-6 text-xl font-semibold">{p.t}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{p.d}</p>
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {topFeatures.map((feature, i) => (
+              <Reveal key={feature.title} delay={i * 0.04}>
+                <div className="group h-full rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <feature.icon className="h-5 w-5" />
                   </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Secondary feature row */}
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            <Reveal>
-              <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 md:p-10">
-                <div className="grid items-center gap-8 md:grid-cols-2">
-                  <div>
-                    <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">Exercise library</div>
-                    <h3 className="mt-4 text-2xl font-semibold">Browse by muscle group</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">Chest, back, legs, arms — search any lift, see proper form, and add it to today's session.</p>
-                  </div>
-                  <img src={screenLibrary} alt="Exercise library" loading="lazy" className="mx-auto w-full max-w-[240px] rounded-[1.75rem] border border-border shadow-xl" />
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 md:p-10">
-                <div className="grid items-center gap-8 md:grid-cols-2">
-                  <div>
-                    <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">Shape your week</div>
-                    <h3 className="mt-4 text-2xl font-semibold">Tune frequency & sessions</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">Pick 2–6 training days, set session length, and PeakFit rebuilds your plan around your life.</p>
-                  </div>
-                  <img src={screenShapeWeek} alt="Shape your week" loading="lazy" className="mx-auto w-full max-w-[240px] rounded-[1.75rem] border border-border shadow-xl" />
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section className="py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">How it works</div>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Three steps. <span className="text-gradient">Real change.</span></h2>
-          </Reveal>
-
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {[
-              { n: "01", t: "Track your workouts", d: "Log sets, reps, and runs in seconds — or let your wearable do it." },
-              { n: "02", t: "Monitor nutrition & health", d: "Snap meals, sync sleep, water, heart rate. We do the math." },
-              { n: "03", t: "Achieve transformation", d: "Follow AI plans tuned to you. Watch progress compound weekly." },
-            ].map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.1}>
-                <div className="relative h-full overflow-hidden rounded-3xl border border-border bg-card p-8">
-                  <div className="text-6xl font-bold text-gradient opacity-80">{s.n}</div>
-                  <h3 className="mt-6 text-xl font-semibold">{s.t}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
+                  <h3 className="mt-5 text-base font-semibold">{feature.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{feature.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -413,20 +636,158 @@ function Landing() {
         </div>
       </section>
 
-      {/* INTEGRATIONS */}
-      <section className="py-24 md:py-32">
+      <section id="app" className="relative py-20 md:py-28">
+        <div className="absolute inset-x-0 top-20 -z-10 h-96 bg-gradient-glow opacity-70 blur-3xl" />
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <Badge>The app screens</Badge>
+            <h2 className="mt-4 text-4xl font-bold md:text-6xl">
+              A complete app tour, screen by screen.
+            </h2>
+            <p className="mt-5 text-muted-foreground">
+              All current app screenshots are shown inside real device-style frames, with each
+              feature explained in the same flow users experience inside PeakFit.
+            </p>
+          </Reveal>
+
+          <div className="mt-16 space-y-20">
+            {showcaseGroups.map((group, groupIndex) => (
+              <FeatureShowcase key={group.eyebrow} group={group} index={groupIndex} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="plans" className="relative py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-6 shadow-sm md:p-10">
+            <div className="absolute inset-0 bg-hero-glow opacity-70" />
+            <div className="relative grid items-center gap-12 lg:grid-cols-[0.88fr_1.12fr]">
+              <Reveal>
+                <Badge>Plans</Badge>
+                <h2 className="mt-4 text-4xl font-bold leading-tight md:text-5xl">
+                  Build the workout, follow the week, finish the program.
+                </h2>
+                <p className="mt-4 max-w-xl text-muted-foreground">
+                  PeakFit connects the full training journey: design the split, start today's
+                  session, and keep progressing through a structured 8-week plan.
+                </p>
+                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  {[
+                    "Daily push, pull, legs, and custom sessions",
+                    "Exercise library organized by muscle group",
+                    "Weekly plan controls for frequency and duration",
+                    "8-week plan summaries for long-term progress",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-start gap-3 rounded-2xl border border-border bg-white/85 p-4 shadow-sm"
+                    >
+                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                      <span className="text-sm text-muted-foreground">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <div className="relative mx-auto min-h-[440px] w-full max-w-2xl">
+                  <div className="absolute inset-x-0 top-0 mx-auto hidden h-[420px] max-w-[620px] sm:block">
+                    <div className="absolute left-[3%] top-20 w-[34%] -rotate-8">
+                      <PhoneFrame
+                        src={appWorkoutBuilder}
+                        alt="Workout builder screen"
+                        className="max-w-[230px]"
+                      />
+                    </div>
+                    <div className="absolute left-1/2 top-0 z-20 w-[42%] -translate-x-1/2">
+                      <PhoneFrame
+                        src={appWorkoutDay}
+                        alt="Daily workout screen"
+                        className="max-w-[280px]"
+                      />
+                    </div>
+                    <div className="absolute right-[3%] top-20 w-[34%] rotate-8">
+                      <PhoneFrame
+                        src={appEightWeekPlan}
+                        alt="8-week plan screen"
+                        className="max-w-[230px]"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-center sm:hidden">
+                    <PhoneFrame
+                      src={appWorkoutDay}
+                      alt="Daily workout screen"
+                      className="max-w-[270px]"
+                    />
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <Badge>How it works</Badge>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+              Set up once. Follow daily. Improve weekly.
+            </h2>
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                n: "01",
+                t: "Build the profile",
+                d: "Goals, diet, body, gender, and weight create the user's starting point.",
+              },
+              {
+                n: "02",
+                t: "Follow the plan",
+                d: "Workouts, meals, reminders, and coach notes keep the next action clear.",
+              },
+              {
+                n: "03",
+                t: "Review progress",
+                d: "Steps, sleep, calories, body trends, and streaks show what is improving.",
+              },
+            ].map((step, i) => (
+              <Reveal key={step.n} delay={i * 0.1}>
+                <div className="h-full rounded-3xl border border-border bg-card p-8 shadow-sm">
+                  <div className="text-6xl font-bold text-gradient">{step.n}</div>
+                  <h3 className="mt-6 text-xl font-semibold">{step.t}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{step.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <Reveal>
-              <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">Integrations</div>
-              <h2 className="mt-4 text-4xl font-bold md:text-5xl">One profile. <span className="text-gradient">Every device.</span></h2>
-              <p className="mt-4 text-muted-foreground">PeakFit talks to the platforms and wearables you already own — no manual logging, no broken data.</p>
+              <Badge>Integrations</Badge>
+              <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+                Health data belongs beside training data.
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                PeakFit is designed to bring supported health and wearable signals into the same
+                place users already track workouts and nutrition.
+              </p>
 
               <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {integrations.map((name) => (
-                  <div key={name} className="rounded-xl border border-border bg-card px-4 py-3 text-sm font-medium">
+                  <div
+                    key={name}
+                    className="rounded-2xl border border-border bg-card px-4 py-3 text-sm font-medium shadow-sm"
+                  >
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-primary glow-primary" />
+                      <div className="h-2 w-2 rounded-full bg-primary" />
                       {name}
                     </div>
                   </div>
@@ -435,46 +796,49 @@ function Landing() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="relative">
-                <div className="absolute -inset-8 bg-gradient-glow opacity-50 blur-3xl" />
-                <div className="relative rounded-3xl border border-border glass p-8">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-xs text-muted-foreground">This week</div>
-                      <div className="mt-1 text-3xl font-bold">12,847 <span className="text-base font-normal text-muted-foreground">kcal</span></div>
-                    </div>
-                    <div className="flex items-center gap-1 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold text-primary">
-                      <Zap className="h-3 w-3" /> +18%
+              <div className="relative rounded-[2rem] border border-border bg-card p-8 shadow-xl">
+                <div className="absolute -inset-8 -z-10 bg-gradient-glow opacity-60 blur-3xl" />
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-xs text-muted-foreground">This week</div>
+                    <div className="mt-1 text-3xl font-bold">
+                      12,847{" "}
+                      <span className="text-base font-normal text-muted-foreground">kcal</span>
                     </div>
                   </div>
-
-                  <div className="mt-8 flex h-40 items-end gap-2">
-                    {[40, 65, 50, 80, 45, 92, 70].map((h, i) => (
-                      <div key={i} className="flex flex-1 flex-col items-center gap-2">
-                        <motion.div
-                          initial={{ height: 0 }}
-                          whileInView={{ height: `${h}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: i * 0.08, ease: "easeOut" }}
-                          className="w-full rounded-t-lg bg-gradient-to-t from-accent to-primary"
-                        />
-                        <div className="text-[10px] text-muted-foreground">{["M","T","W","T","F","S","S"][i]}</div>
-                      </div>
-                    ))}
+                  <div className="flex items-center gap-1 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold text-primary">
+                    <Zap className="h-3 w-3" /> +18%
                   </div>
+                </div>
 
-                  <div className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-6">
-                    {[
-                      { l: "Weight", v: "−4.2 kg" },
-                      { l: "Muscle", v: "+2.1 kg" },
-                      { l: "Sleep", v: "7h 48m" },
-                    ].map((s) => (
-                      <div key={s.l}>
-                        <div className="text-xs text-muted-foreground">{s.l}</div>
-                        <div className="mt-1 text-lg font-semibold">{s.v}</div>
+                <div className="mt-8 flex h-40 items-end gap-2">
+                  {[40, 65, 50, 80, 45, 92, 70].map((height, i) => (
+                    <div key={i} className="flex flex-1 flex-col items-center gap-2">
+                      <motion.div
+                        initial={{ height: 0 }}
+                        whileInView={{ height: `${height}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: i * 0.08, ease: "easeOut" }}
+                        className="w-full rounded-t-xl bg-gradient-to-t from-accent to-primary"
+                      />
+                      <div className="text-[10px] text-muted-foreground">
+                        {["M", "T", "W", "T", "F", "S", "S"][i]}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-6">
+                  {[
+                    { l: "Weight", v: "-4.2 kg" },
+                    { l: "Muscle", v: "+2.1 kg" },
+                    { l: "Sleep", v: "7h 48m" },
+                  ].map((stat) => (
+                    <div key={stat.l}>
+                      <div className="text-xs text-muted-foreground">{stat.l}</div>
+                      <div className="mt-1 text-lg font-semibold">{stat.v}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>
@@ -482,29 +846,35 @@ function Landing() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-24 md:py-32">
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">Results</div>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Real people. <span className="text-gradient">Real transformations.</span></h2>
+            <Badge>Results</Badge>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+              Built for consistency users can feel.
+            </h2>
           </Reveal>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.1}>
-                <div className="h-full rounded-3xl border border-border bg-card p-8">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {reviews.map((review, i) => (
+              <Reveal key={review.name} delay={i * 0.1}>
+                <div className="h-full rounded-3xl border border-border bg-card p-8 shadow-sm">
                   <div className="flex items-center gap-1">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                    {[...Array(5)].map((_, starIndex) => (
+                      <Sparkles key={starIndex} className="h-4 w-4 fill-primary text-primary" />
                     ))}
                   </div>
-                  <p className="mt-5 text-base leading-relaxed">"{t.quote}"</p>
+                  <p className="mt-5 text-base leading-relaxed text-foreground">"{review.quote}"</p>
                   <div className="mt-8 flex items-center gap-3">
-                    <img src={t.img} alt={t.name} loading="lazy" width={48} height={48} className="h-12 w-12 rounded-full border border-border object-cover" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-sm font-bold text-secondary-foreground">
+                      {review.name
+                        .split(" ")
+                        .map((part) => part[0])
+                        .join("")}
+                    </div>
                     <div>
-                      <div className="font-semibold">{t.name}</div>
-                      <div className="text-xs text-muted-foreground">{t.role}</div>
+                      <div className="font-semibold">{review.name}</div>
+                      <div className="text-xs text-muted-foreground">{review.role}</div>
                     </div>
                   </div>
                 </div>
@@ -514,129 +884,125 @@ function Landing() {
         </div>
       </section>
 
-      {/* PRICING */}
-      <section id="pricing" className="py-24 md:py-32">
+      <section id="pricing" className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">Pricing</div>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Start free. <span className="text-gradient">Scale with results.</span></h2>
+            <Badge>Pricing</Badge>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+              Start free. Upgrade when you want deeper coaching.
+            </h2>
             <p className="mt-4 text-muted-foreground">
-              Every plan is built to deliver visible progress - from daily consistency to elite-level performance coaching.
+              Join 10,000+ users hitting their goals with AI-powered coaching. Cancel anytime.
             </p>
 
-            <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-border bg-secondary/60 p-1">
-              <button
-                onClick={() => setYearly(false)}
-                className={`rounded-full px-5 py-1.5 text-sm font-medium transition-all ${!yearly ? "bg-gradient-primary text-primary-foreground" : "text-muted-foreground"}`}
-              >Monthly</button>
-              <button
-                onClick={() => setYearly(true)}
-                className={`rounded-full px-5 py-1.5 text-sm font-medium transition-all ${yearly ? "bg-gradient-primary text-primary-foreground" : "text-muted-foreground"}`}
-              >Yearly <span className="ml-1 text-xs opacity-80">−17%</span></button>
+            <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-border bg-card p-1 shadow-sm">
+              {billingLabels.map((option) => (
+                <button
+                  key={option.id}
+                  onClick={() => setBillingCycle(option.id)}
+                  className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all md:px-5 ${
+                    billingCycle === option.id
+                      ? "bg-gradient-primary text-primary-foreground"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {option.label}
+                  {option.id === "yearly" && (
+                    <span className="ml-1 text-xs opacity-80">({currency.yearlySavings})</span>
+                  )}
+                </button>
+              ))}
             </div>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Showing {currencyRegion === "IN" ? "INR" : "USD"} pricing based on your locale.
+            </p>
           </Reveal>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {[
-              {
-                name: "Free",
-                price: 0,
-                desc: "Build your fitness habit with core essentials.",
-                features: [
-                  "Unlimited workout logging",
-                  "Calories and macro tracking",
-                  "Weekly progress snapshots",
-                  "Goal and streak tracking",
-                ],
-                cta: "Start Free",
-              },
-              {
-                name: "Pro",
-                price: 499,
-                desc: "Best value for faster body transformation.",
-                features: [
-                  "Everything in Free",
-                  "AI workout coach with adaptive plans",
-                  "Advanced nutrition intelligence",
-                  "Wearable and health app sync",
-                  "Deep analytics with recovery insights",
-                  "Smart weekly plan adjustments",
-                ],
-                cta: "Start Pro Trial",
-                popular: true,
-              },
-              {
-                name: "Elite",
-                price: 999,
-                desc: "Complete high-performance coaching support.",
-                features: [
-                  "Everything in Pro",
-                  "Advanced AI coaching modes",
-                  "Premium transformation dashboards",
-                  "Priority feature access",
-                  "Priority support response",
-                  "1:1 monthly coaching consult",
-                ],
-                cta: "Join Elite",
-              },
-            ].map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.08}>
-                <div className={`relative h-full overflow-hidden rounded-3xl border p-8 transition-all hover:-translate-y-1 ${p.popular ? "border-primary/50 bg-card glow-primary" : "border-border bg-card"}`}>
-                  {p.popular && (
-                    <div className="absolute right-6 top-6 rounded-full bg-gradient-primary px-3 py-1 text-xs font-semibold text-primary-foreground">Most popular</div>
-                  )}
-                  <h3 className="text-lg font-semibold">{p.name}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
-                  <div className="mt-6 flex items-baseline gap-1">
-                    <span className="text-5xl font-bold">₹{price(p.price)}</span>
-                    {p.price > 0 && <span className="text-sm text-muted-foreground">{cadence}</span>}
-                  </div>
-                  {yearly && p.price > 0 && (
-                    <p className="mt-2 text-xs font-medium text-primary">
-                      Save ₹{p.price * 2}/year with annual billing
-                    </p>
-                  )}
-                  <a
-                    href="#download"
-                    className={`mt-6 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${p.popular ? "bg-gradient-primary text-primary-foreground" : "border border-border bg-secondary/60 text-foreground hover:bg-secondary"}`}
-                  >{p.cta}</a>
-                  <ul className="mt-8 space-y-3">
-                    {p.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3 text-sm">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
+          <div className="mx-auto mt-14 max-w-xl">
+            <Reveal>
+              <div className="relative h-full overflow-hidden rounded-3xl border border-primary/40 bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className="absolute right-6 top-6 rounded-full bg-gradient-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+                  Most popular
                 </div>
-              </Reveal>
-            ))}
+                <div className="mb-5 inline-flex flex-col rounded-2xl border border-orange-200 bg-orange-50 px-4 py-2 text-left shadow-sm">
+                  <span className="text-xs font-bold text-orange-700">🔥 Limited Offer</span>
+                  <span className="mt-0.5 text-[11px] font-medium text-orange-600">
+                    Launch pricing ends in {formatOfferCountdown(offerSecondsLeft)}
+                  </span>
+                </div>
+                <h3 className="text-lg font-semibold">PeakFit Pro</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  AI coaching, smart nutrition, health sync, recovery insights, and progress
+                  analytics in one membership.
+                </p>
+                <div className="mt-6 flex items-baseline gap-1">
+                  <span className="text-5xl font-bold">
+                    {formatPlanPrice(currency.prices[billingCycle], currency.symbol)}
+                  </span>
+                  <span className="text-sm text-muted-foreground">{cadence}</span>
+                </div>
+                {billingCycle === "yearly" && (
+                  <p className="mt-2 text-xs font-medium text-primary">
+                    {currency.yearlySavings.replace("save", "Save")} with annual billing
+                  </p>
+                )}
+                {billingCycle === "lifetime" && (
+                  <p className="mt-3 rounded-2xl border border-primary/20 bg-secondary px-4 py-3 text-xs font-semibold text-secondary-foreground">
+                    Pay once. Use forever. Only 500 lifetime slots available.
+                  </p>
+                )}
+                <a
+                  href="#download"
+                  className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]"
+                >
+                  {billingCycle === "lifetime" ? "Get Lifetime Access" : "Start 7-Day Free Trial"}
+                </a>
+                <ul className="mt-8 space-y-3">
+                  {[
+                    "AI workout coach",
+                    "Advanced nutrition intelligence",
+                    "Health app sync",
+                    "Recovery insights",
+                    "Smart weekly plan adjustments",
+                    "Premium transformation dashboards",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="py-24 md:py-32">
+      <section id="faq" className="py-20 md:py-28">
         <div className="mx-auto max-w-3xl px-6">
           <Reveal className="text-center">
-            <div className="inline-flex rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">FAQ</div>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Frequently <span className="text-gradient">asked</span>.</h2>
+            <Badge>FAQ</Badge>
+            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Questions before launch.</h2>
           </Reveal>
 
           <div className="mt-12 space-y-3">
-            {faqs.map((f, i) => (
-              <Reveal key={f.q} delay={i * 0.05}>
+            {faqs.map((faq, i) => (
+              <Reveal key={faq.q} delay={i * 0.05}>
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full overflow-hidden rounded-2xl border border-border bg-card text-left transition-colors hover:border-primary/40"
+                  className="w-full overflow-hidden rounded-2xl border border-border bg-card text-left shadow-sm transition-colors hover:border-primary/40"
                 >
                   <div className="flex items-center justify-between gap-4 px-6 py-5">
-                    <span className="font-medium">{f.q}</span>
-                    <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
+                    <span className="font-medium">{faq.q}</span>
+                    <ChevronDown
+                      className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${openFaq === i ? "rotate-180" : ""}`}
+                    />
                   </div>
-                  <div className={`grid transition-all duration-300 ${openFaq === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                  <div
+                    className={`grid transition-all duration-300 ${openFaq === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                  >
                     <div className="overflow-hidden">
-                      <p className="px-6 pb-5 text-sm text-muted-foreground">{f.a}</p>
+                      <p className="px-6 pb-5 text-sm leading-6 text-muted-foreground">{faq.a}</p>
                     </div>
                   </div>
                 </button>
@@ -646,35 +1012,55 @@ function Landing() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section id="download" className="relative py-24 md:py-32">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-12 md:p-20 text-center">
-            <div className="absolute inset-0 bg-gradient-glow opacity-60" />
-            <div className="absolute inset-0 grid-bg opacity-30" />
-            <div className="relative">
+      <section id="download" className="relative py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-8 shadow-xl md:p-12">
+            <div className="absolute inset-0 bg-hero-glow opacity-80" />
+            <div className="absolute inset-0 grid-bg opacity-25" />
+            <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_320px]">
               <Reveal>
-                <h2 className="text-4xl font-bold leading-tight md:text-6xl">
-                  Your strongest version<br /><span className="text-gradient">starts today.</span>
+                <Badge>Download</Badge>
+                <h2 className="mt-4 text-4xl font-bold leading-tight md:text-6xl">
+                  Scan to download PeakFit.
                 </h2>
-                <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-                  Join 50,000+ athletes who train smarter with PeakFit. 7-day free trial. Cancel anytime.
+                <p className="mt-5 max-w-xl text-muted-foreground">
+                  This download area includes a dummy QR/barcode placeholder. When the final app
+                  link is ready, replace it so visitors can scan directly from the website.
                 </p>
-                <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-                  <a href="#" className="inline-flex items-center gap-3 rounded-2xl bg-foreground px-6 py-3 text-background transition-transform hover:scale-105">
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <a
+                    href="#"
+                    className="inline-flex items-center gap-3 rounded-2xl bg-gradient-primary px-6 py-3 text-primary-foreground shadow-lg transition-transform hover:scale-105"
+                  >
                     <Apple className="h-7 w-7" />
                     <div className="text-left">
-                      <div className="text-[10px] opacity-70">Download on the</div>
+                      <div className="text-[10px] opacity-80">Download on the</div>
                       <div className="text-sm font-semibold">App Store</div>
                     </div>
                   </a>
-                  <a href="#" className="inline-flex items-center gap-3 rounded-2xl bg-foreground px-6 py-3 text-background transition-transform hover:scale-105">
-                    <Play className="h-7 w-7 fill-background" />
+                  <a
+                    href="#"
+                    className="inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-6 py-3 text-foreground shadow-sm transition-transform hover:scale-105"
+                  >
+                    <Play className="h-7 w-7 fill-foreground" />
                     <div className="text-left">
-                      <div className="text-[10px] opacity-70">Get it on</div>
+                      <div className="text-[10px] text-muted-foreground">Get it on</div>
                       <div className="text-sm font-semibold">Google Play</div>
                     </div>
                   </a>
+                </div>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <div className="rounded-[2rem] border border-border bg-white p-5 text-center shadow-2xl">
+                  <div className="mb-4 flex items-center justify-center gap-2 text-sm font-semibold text-foreground">
+                    <QrCode className="h-4 w-4" />
+                    Scan to download PeakFit
+                  </div>
+                  <DummyQrCode />
+                  <p className="mt-4 text-xs leading-5 text-muted-foreground">
+                    Placeholder only. Replace this with the final store QR when the download URL is
+                    ready.
+                  </p>
                 </div>
               </Reveal>
             </div>
@@ -682,31 +1068,66 @@ function Landing() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-border py-16">
+      <footer className="border-t border-border bg-card/50 py-16">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 md:grid-cols-4">
             <div>
-              <img src={logo} alt="PeakFit" className="h-9 w-auto" />
+              <BrandLockup />
               <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-                The AI fitness ecosystem for athletes who refuse to plateau.
+                The AI fitness app for people who want workouts, nutrition, recovery, and progress
+                in one place.
               </p>
             </div>
 
-            {([
-              { t: "Product", links: [{ l: "Features", h: "/#features" }, { l: "Plans", h: "/#plans" }, { l: "Pricing", h: "/#pricing" }, { l: "FAQ", h: "/#faq" }] },
-              { t: "Download", links: [{ l: "iOS App Store", h: "#download" }, { l: "Google Play", h: "#download" }, { l: "What's new", h: "/#app" }] },
-              { t: "Legal", links: [{ l: "About Us", h: "/about-us", internal: true }, { l: "Privacy Policy", h: "/privacy", internal: true }, { l: "Terms & Conditions", h: "/terms", internal: true }] },
-            ] as const).map((col) => (
+            {(
+              [
+                {
+                  t: "Product",
+                  links: [
+                    { l: "Features", h: "/#features" },
+                    { l: "App Screens", h: "/#app" },
+                    { l: "Plans", h: "/#plans" },
+                    { l: "Pricing", h: "/#pricing" },
+                    { l: "FAQ", h: "/#faq" },
+                  ],
+                },
+                {
+                  t: "Download",
+                  links: [
+                    { l: "iOS App Store", h: "#download" },
+                    { l: "Google Play", h: "#download" },
+                    { l: "QR Download", h: "#download" },
+                  ],
+                },
+                {
+                  t: "Legal",
+                  links: [
+                    { l: "About Us", h: "/about-us", internal: true },
+                    { l: "Privacy Policy", h: "/privacy", internal: true },
+                    { l: "Terms & Conditions", h: "/terms", internal: true },
+                  ],
+                },
+              ] as const
+            ).map((col) => (
               <div key={col.t}>
                 <div className="text-sm font-semibold">{col.t}</div>
                 <ul className="mt-4 space-y-2.5">
                   {col.links.map((item) => (
                     <li key={item.l}>
                       {"internal" in item && item.internal ? (
-                        <Link to={item.h} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{item.l}</Link>
+                        <Link
+                          to={item.h}
+                          className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        >
+                          {item.l}
+                        </Link>
                       ) : (
-                        <a href={item.h} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{item.l}</a>
+                        <a
+                          href={item.h}
+                          className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        >
+                          {item.l}
+                        </a>
                       )}
                     </li>
                   ))}
@@ -716,7 +1137,9 @@ function Landing() {
           </div>
 
           <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
-            <div className="text-xs text-muted-foreground">© 2026 PeakFit Global. Built by Champ96k.</div>
+            <div className="text-xs text-muted-foreground">
+              © 2026 PeakFit Global. Built by Champ96k.
+            </div>
             <div className="flex gap-3">
               {[
                 { s: "GH", h: "https://github.com/champ96k", label: "GitHub" },
@@ -724,22 +1147,247 @@ function Landing() {
                 { s: "IN", h: "https://www.linkedin.com/in/tushar-nikam-dev/", label: "LinkedIn" },
                 { s: "IG", h: "https://www.instagram.com/peakfit.global/", label: "Instagram" },
                 { s: "@", h: "mailto:champ96klabs@gmail.com", label: "Email" },
-              ].map((s) => (
+              ].map((social) => (
                 <a
-                  key={s.label}
-                  href={s.h}
-                  aria-label={s.label}
-                  target={s.h.startsWith("http") ? "_blank" : undefined}
-                  rel={s.h.startsWith("http") ? "noreferrer noopener" : undefined}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                  key={social.label}
+                  href={social.h}
+                  aria-label={social.label}
+                  target={social.h.startsWith("http") ? "_blank" : undefined}
+                  rel={social.h.startsWith("http") ? "noreferrer noopener" : undefined}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
                 >
-                  {s.s}
+                  {social.s}
                 </a>
               ))}
             </div>
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function Badge({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="inline-flex rounded-full border border-border bg-card/80 px-3 py-1 text-xs font-semibold text-muted-foreground shadow-sm backdrop-blur">
+      {children}
+    </div>
+  );
+}
+
+function BrandLockup() {
+  return (
+    <div className="inline-flex items-center rounded-2xl bg-slate-950 px-3 py-2 shadow-sm">
+      <img src={logo} alt="PeakFit" className="h-8 w-auto" />
+    </div>
+  );
+}
+
+function FeatureShowcase({ group, index }: { group: FeatureGroup; index: number }) {
+  const Icon = group.icon;
+  const reversed = index % 2 === 1;
+
+  return (
+    <div className="overflow-hidden rounded-[2rem] border border-border bg-card/80 p-6 shadow-sm md:p-8">
+      <div
+        className={`grid items-center gap-10 lg:grid-cols-[0.42fr_0.58fr] ${reversed ? "lg:grid-flow-col-dense" : ""}`}
+      >
+        <Reveal className={reversed ? "lg:col-start-2" : ""}>
+          <div className="max-w-xl">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground">
+              <Icon className="h-5 w-5" />
+            </div>
+            <div className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-primary">
+              {group.eyebrow}
+            </div>
+            <h3 className="mt-3 text-3xl font-bold leading-tight md:text-5xl">{group.title}</h3>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground md:text-base">
+              {group.description}
+            </p>
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground">
+              <Activity className="h-4 w-4 text-primary" />
+              {group.screens.length} {group.screens.length === 1 ? "screen" : "screens"} in this
+              flow
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.08} className={reversed ? "lg:col-start-1" : ""}>
+          <div className="relative min-h-[500px] overflow-hidden rounded-[2rem] border border-border bg-gradient-to-br from-secondary/70 via-white to-card p-6 shadow-inner">
+            <AngledPhoneStack screens={group.screens} />
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {group.screens.map((screen, screenIndex) => (
+          <Reveal key={screen.title} delay={screenIndex * 0.03}>
+            <ScreenNote screen={screen} index={screenIndex} />
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AngledPhoneStack({ screens }: { screens: ScreenFeature[] }) {
+  const [baseIndex, setBaseIndex] = useState(0);
+  const deviceCount = Math.min(Math.max(screens.length, 1), 3) as 1 | 2 | 3;
+  const shouldCycle = screens.length > deviceCount;
+  const positionsByDeviceCount: Record<1 | 2 | 3, string[]> = {
+    1: ["left-1/2 top-0 z-30 w-[50%] -translate-x-1/2"],
+    2: ["left-[12%] top-16 z-20 w-[38%] -rotate-7", "right-[12%] top-8 z-30 w-[42%] rotate-5"],
+    3: [
+      "left-[6%] top-24 z-20 w-[35%] -rotate-8",
+      "left-1/2 top-4 z-30 w-[42%] -translate-x-1/2",
+      "right-[6%] top-24 z-20 w-[35%] rotate-8",
+    ],
+  };
+
+  useEffect(() => {
+    if (!shouldCycle) return;
+
+    const intervalId = window.setInterval(() => {
+      setBaseIndex((current) => (current + 1) % screens.length);
+    }, 5500);
+
+    return () => window.clearInterval(intervalId);
+  }, [screens.length, shouldCycle]);
+
+  const positions = positionsByDeviceCount[deviceCount];
+
+  return (
+    <>
+      <div className="overflow-x-auto pb-3 md:hidden">
+        <div className="flex snap-x snap-mandatory gap-5">
+          {screens.map((screen) => (
+            <div
+              key={screen.title}
+              className="flex min-w-full snap-center flex-col items-center justify-center px-4"
+            >
+              <PhoneFrame
+                src={screen.src}
+                alt={`${screen.title} app screenshot`}
+                className="mx-auto max-w-[250px]"
+              />
+              <div className="mt-5 max-w-xs text-center">
+                <div className="text-sm font-semibold">{screen.title}</div>
+                <p className="mt-1 text-xs leading-5 text-muted-foreground">{screen.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="absolute inset-x-0 top-8 mx-auto hidden h-[430px] max-w-[680px] md:block">
+        {Array.from({ length: deviceCount }).map((_, phoneIndex) => {
+          const screen = screens[(baseIndex + phoneIndex) % screens.length];
+          const position = positions[phoneIndex];
+
+          return (
+            <div key={phoneIndex} className={`absolute ${position}`}>
+              <CyclingPhoneFrame screen={screen} />
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
+function CyclingPhoneFrame({ screen }: { screen: ScreenFeature }) {
+  return (
+    <div className="relative mx-auto w-full max-w-[270px]">
+      <div className="absolute -inset-3 rounded-[3rem] bg-gradient-glow opacity-60 blur-2xl" />
+      <div className="relative rounded-[2.35rem] border-[8px] border-slate-950 bg-slate-950 p-1 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.65)]">
+        <div className="absolute left-1/2 top-3 z-20 h-1.5 w-16 -translate-x-1/2 rounded-full bg-slate-800" />
+        <div className="overflow-hidden rounded-[1.82rem] bg-white">
+          <motion.img
+            key={screen.src}
+            src={screen.src}
+            alt={`${screen.title} app screenshot`}
+            loading="lazy"
+            width={1170}
+            height={2532}
+            initial={{ opacity: 0, scale: 1.025 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="block w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ScreenNote({ screen, index }: { screen: ScreenFeature; index: number }) {
+  return (
+    <div className="h-full rounded-2xl border border-border bg-white/75 p-4 shadow-sm">
+      <div className="flex items-start gap-3">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-secondary-foreground">
+          {String(index + 1).padStart(2, "0")}
+        </div>
+        <div>
+          <h4 className="text-sm font-semibold">{screen.title}</h4>
+          <p className="mt-1 text-sm leading-6 text-muted-foreground">{screen.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PhoneFrame({
+  src,
+  alt,
+  className = "",
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <div className={`relative mx-auto w-full max-w-[270px] ${className}`}>
+      <div className="absolute -inset-3 rounded-[3rem] bg-gradient-glow opacity-60 blur-2xl" />
+      <div className="relative rounded-[2.35rem] border-[8px] border-slate-950 bg-slate-950 p-1 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.65)]">
+        <div className="absolute left-1/2 top-3 z-20 h-1.5 w-16 -translate-x-1/2 rounded-full bg-slate-800" />
+        <div className="overflow-hidden rounded-[1.82rem] bg-white">
+          <img
+            src={src}
+            alt={alt}
+            loading={priority ? "eager" : "lazy"}
+            width={1170}
+            height={2532}
+            className="block w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DummyQrCode({ compact = false }: { compact?: boolean }) {
+  return (
+    <div
+      className={`mx-auto grid grid-cols-[repeat(14,minmax(0,1fr))] border border-border bg-white ${
+        compact ? "h-24 w-24 gap-0.5 rounded-xl p-2" : "h-56 w-56 gap-1 rounded-2xl p-3"
+      }`}
+      aria-label="Dummy QR code placeholder"
+      role="img"
+    >
+      {qrPattern.flatMap((row, rowIndex) =>
+        row
+          .split("")
+          .map((cell, colIndex) => (
+            <span
+              key={`${rowIndex}-${colIndex}`}
+              className={`${compact ? "rounded-[1px]" : "rounded-[3px]"} ${
+                cell === "1" ? "bg-foreground" : "bg-transparent"
+              }`}
+            />
+          )),
+      )}
     </div>
   );
 }
