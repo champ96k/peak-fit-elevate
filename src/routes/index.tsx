@@ -33,6 +33,7 @@ import { Counter } from "@/components/peakfit/Counter";
 import { Particles } from "@/components/peakfit/Particles";
 import { Reveal } from "@/components/peakfit/Reveal";
 import logo from "@/assets/peakfit-logo.png";
+import qrCodeImage from "@/assets/qr-code.png";
 import appHomeDashboard from "@/assets/app-home-dashboard.png";
 import appWorkoutDay from "@/assets/app-workout-day.png";
 import appWorkoutBuilder from "@/assets/app-workout-builder.png";
@@ -57,6 +58,9 @@ import appOnboardingDiet from "@/assets/app-onboarding-diet.png";
 import appOnboardingBodyType from "@/assets/app-onboarding-body-type.png";
 import appOnboardingGender from "@/assets/app-onboarding-gender.png";
 import appOnboardingWeight from "@/assets/app-onboarding-weight.png";
+
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.champ96k.peakfit";
+const APP_STORE_URL = "https://apps.apple.com/us/app/peakfit-fitness-tracker/id6777769375";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -357,26 +361,9 @@ const faqs = [
     a: "The app includes a connected Apple Health flow and is designed for supported health and wearable integrations.",
   },
   {
-    q: "Is the QR code live?",
-    a: "The QR code shown here is a placeholder for now. Replace it with the final store link when the app download URL is ready.",
+    q: "How do I download PeakFit?",
+    a: "Scan the QR code on the website, or tap the App Store / Google Play buttons to download PeakFit directly to your phone.",
   },
-];
-
-const qrPattern = [
-  "11111110111111",
-  "10000110100001",
-  "10110100101101",
-  "10110110101101",
-  "10000100100001",
-  "11111110111111",
-  "00000000000000",
-  "10101111010110",
-  "01110010111001",
-  "11001101100110",
-  "00110111001011",
-  "11100100111100",
-  "10011101000111",
-  "11010011101010",
 ];
 
 type BillingCycle = "monthly" | "yearly" | "lifetime";
@@ -507,14 +494,18 @@ function Landing() {
               className="mt-8 flex flex-wrap items-center gap-4"
             >
               <a
-                href="#download"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-105"
               >
                 <Apple className="h-4 w-4" />
                 Download for iOS
               </a>
               <a
-                href="#download"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold text-foreground shadow-sm transition-transform hover:scale-105"
               >
                 <Play className="h-4 w-4 fill-foreground" />
@@ -522,24 +513,29 @@ function Landing() {
               </a>
             </motion.div>
 
-            <motion.a
-              href="#download"
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-6 flex max-w-md items-center gap-4 rounded-3xl border border-border bg-card/90 p-4 shadow-sm backdrop-blur transition-transform hover:-translate-y-1 hover:shadow-xl"
             >
-              <DummyQrCode compact />
-              <div>
-                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                  <QrCode className="h-4 w-4 text-primary" />
-                  Scan to download PeakFit
+              <Link to="/download" className="flex w-full items-center gap-4">
+                <img
+                  src={qrCodeImage}
+                  alt="Scan to download PeakFit"
+                  className="h-24 w-24 rounded-xl border border-border object-contain"
+                />
+                <div>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <QrCode className="h-4 w-4 text-primary" />
+                    Scan to download PeakFit
+                  </div>
+                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                    Scan the QR code to open PeakFit on the App Store or Play Store.
+                  </p>
                 </div>
-                <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                  Dummy QR for now. Replace it with the final App Store or Play Store link later.
-                </p>
-              </div>
-            </motion.a>
+              </Link>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
@@ -951,12 +947,12 @@ function Landing() {
                     Pay once. Use forever. Only 500 lifetime slots available.
                   </p>
                 )}
-                <a
-                  href="#download"
+                <Link
+                  to="/download"
                   className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]"
                 >
                   {billingCycle === "lifetime" ? "Get Lifetime Access" : "Start 7-Day Free Trial"}
-                </a>
+                </Link>
                 <ul className="mt-8 space-y-3">
                   {[
                     "AI workout coach",
@@ -1024,12 +1020,14 @@ function Landing() {
                   Scan to download PeakFit.
                 </h2>
                 <p className="mt-5 max-w-xl text-muted-foreground">
-                  This download area includes a dummy QR/barcode placeholder. When the final app
-                  link is ready, replace it so visitors can scan directly from the website.
+                  Download PeakFit from the App Store or Google Play. Scan the QR code below to open
+                  the store directly on your phone.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-4">
                   <a
-                    href="#"
+                    href={APP_STORE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 rounded-2xl bg-gradient-primary px-6 py-3 text-primary-foreground shadow-lg transition-transform hover:scale-105"
                   >
                     <Apple className="h-7 w-7" />
@@ -1039,7 +1037,9 @@ function Landing() {
                     </div>
                   </a>
                   <a
-                    href="#"
+                    href={PLAY_STORE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-6 py-3 text-foreground shadow-sm transition-transform hover:scale-105"
                   >
                     <Play className="h-7 w-7 fill-foreground" />
@@ -1056,10 +1056,13 @@ function Landing() {
                     <QrCode className="h-4 w-4" />
                     Scan to download PeakFit
                   </div>
-                  <DummyQrCode />
+                  <img
+                    src={qrCodeImage}
+                    alt="Scan to download PeakFit"
+                    className="mx-auto h-56 w-56 rounded-2xl border border-border object-contain"
+                  />
                   <p className="mt-4 text-xs leading-5 text-muted-foreground">
-                    Placeholder only. Replace this with the final store QR when the download URL is
-                    ready.
+                    Point your phone camera at the QR code to open the store page.
                   </p>
                 </div>
               </Reveal>
@@ -1094,8 +1097,8 @@ function Landing() {
                 {
                   t: "Download",
                   links: [
-                    { l: "iOS App Store", h: "#download" },
-                    { l: "Google Play", h: "#download" },
+                    { l: "iOS App Store", h: APP_STORE_URL, external: true },
+                    { l: "Google Play", h: PLAY_STORE_URL, external: true },
                     { l: "QR Download", h: "#download" },
                   ],
                 },
@@ -1124,6 +1127,10 @@ function Landing() {
                       ) : (
                         <a
                           href={item.h}
+                          target={"external" in item && item.external ? "_blank" : undefined}
+                          rel={
+                            "external" in item && item.external ? "noopener noreferrer" : undefined
+                          }
                           className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                         >
                           {item.l}
@@ -1363,31 +1370,6 @@ function PhoneFrame({
           />
         </div>
       </div>
-    </div>
-  );
-}
-
-function DummyQrCode({ compact = false }: { compact?: boolean }) {
-  return (
-    <div
-      className={`mx-auto grid grid-cols-[repeat(14,minmax(0,1fr))] border border-border bg-white ${
-        compact ? "h-24 w-24 gap-0.5 rounded-xl p-2" : "h-56 w-56 gap-1 rounded-2xl p-3"
-      }`}
-      aria-label="Dummy QR code placeholder"
-      role="img"
-    >
-      {qrPattern.flatMap((row, rowIndex) =>
-        row
-          .split("")
-          .map((cell, colIndex) => (
-            <span
-              key={`${rowIndex}-${colIndex}`}
-              className={`${compact ? "rounded-[1px]" : "rounded-[3px]"} ${
-                cell === "1" ? "bg-foreground" : "bg-transparent"
-              }`}
-            />
-          )),
-      )}
     </div>
   );
 }

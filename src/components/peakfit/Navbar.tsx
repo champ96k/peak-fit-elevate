@@ -4,6 +4,9 @@ import { Menu, X, Apple, Play } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/peakfit-logo.png";
 
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.champ96k.peakfit";
+const APP_STORE_URL = "https://apps.apple.com/us/app/peakfit-fitness-tracker/id6777769375";
+
 const links = [
   { label: "Features", href: "/#features" },
   { label: "App", href: "/#app" },
@@ -54,13 +57,17 @@ export function Navbar() {
 
         <div className="hidden items-center gap-2 md:flex">
           <a
-            href="#download"
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background transition-transform hover:scale-105"
           >
             <Apple className="h-4 w-4" /> iOS
           </a>
           <a
-            href="#download"
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-transform hover:scale-105"
           >
             <Play className="h-4 w-4 fill-primary-foreground" /> Android
@@ -87,14 +94,18 @@ export function Navbar() {
             ))}
             <div className="mt-2 grid grid-cols-2 gap-2">
               <a
-                href="#download"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background"
               >
                 <Apple className="h-4 w-4" /> iOS
               </a>
               <a
-                href="#download"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-xs font-semibold text-primary-foreground"
               >
