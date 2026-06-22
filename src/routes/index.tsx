@@ -451,12 +451,12 @@ function Landing() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="relative overflow-hidden px-6 pb-20 pt-32 md:pb-28 md:pt-40">
+      <section className="relative overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 md:pb-28 md:pt-40">
         <div className="absolute inset-0 bg-hero-glow" />
         <div className="absolute inset-0 grid-bg opacity-45" />
         <Particles />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 sm:gap-14 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -472,7 +472,7 @@ function Landing() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-foreground md:text-7xl"
+              className="mt-6 text-4xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-5xl md:text-7xl"
             >
               Train with a plan that is built for <span className="text-gradient">you.</span>
             </motion.h1>
@@ -481,7 +481,7 @@ function Landing() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground"
+              className="mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8"
             >
               PeakFit brings workouts, diet, sleep, steps, health sync, and AI coaching into a clean
               mobile app that feels familiar from the first tap.
@@ -491,13 +491,13 @@ function Landing() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-8 flex flex-wrap items-center gap-4"
+              className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
             >
               <a
                 href={APP_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-105"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-105 sm:px-6 sm:py-3.5"
               >
                 <Apple className="h-4 w-4" />
                 Download for iOS
@@ -506,7 +506,7 @@ function Landing() {
                 href={PLAY_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold text-foreground shadow-sm transition-transform hover:scale-105"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-transform hover:scale-105 sm:px-6 sm:py-3.5"
               >
                 <Play className="h-4 w-4 fill-foreground" />
                 Download for Android
@@ -517,20 +517,20 @@ function Landing() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-6 flex max-w-md items-center gap-4 rounded-3xl border border-border bg-card/90 p-4 shadow-sm backdrop-blur transition-transform hover:-translate-y-1 hover:shadow-xl"
+              className="mt-6 flex max-w-md items-center gap-3 rounded-2xl border border-border bg-card/90 p-3 shadow-sm backdrop-blur transition-transform hover:-translate-y-1 hover:shadow-xl sm:gap-4 sm:rounded-3xl sm:p-4"
             >
-              <Link to="/download" className="flex w-full items-center gap-4">
+              <Link to="/download" className="flex w-full items-center gap-3 sm:gap-4">
                 <img
                   src={qrCodeImage}
                   alt="Scan to download PeakFit"
-                  className="h-24 w-24 rounded-xl border border-border object-contain"
+                  className="h-16 w-16 rounded-lg border border-border object-contain sm:h-24 sm:w-24 sm:rounded-xl"
                 />
                 <div>
-                  <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                    <QrCode className="h-4 w-4 text-primary" />
+                  <div className="flex items-center gap-2 text-xs font-semibold text-foreground sm:text-sm">
+                    <QrCode className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />
                     Scan to download PeakFit
                   </div>
-                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                  <p className="mt-1 text-[11px] leading-4 text-muted-foreground sm:text-xs sm:leading-5">
                     Scan the QR code to open PeakFit on the App Store or Play Store.
                   </p>
                 </div>
@@ -541,18 +541,20 @@ function Landing() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-border pt-8"
+              className="mt-10 grid max-w-xl grid-cols-3 gap-3 border-t border-border pt-6 sm:mt-12 sm:gap-4 sm:pt-8"
             >
               {[
                 { n: 24, s: "", l: "App screens" },
                 { n: 50, s: "K+", l: "Active users" },
                 { n: 8, s: "wk", l: "Plan cycles" },
               ].map((s) => (
-                <div key={s.l} className="rounded-2xl bg-card/80 p-4 shadow-sm">
-                  <div className="text-2xl font-bold md:text-3xl">
+                <div key={s.l} className="rounded-2xl bg-card/80 p-3 shadow-sm sm:p-4">
+                  <div className="text-xl font-bold sm:text-2xl md:text-3xl">
                     <Counter to={s.n} suffix={s.s} />
                   </div>
-                  <div className="mt-1 text-xs text-muted-foreground md:text-sm">{s.l}</div>
+                  <div className="mt-1 text-[11px] text-muted-foreground sm:text-xs md:text-sm">
+                    {s.l}
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -562,7 +564,7 @@ function Landing() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative min-h-[620px]"
+            className="relative hidden min-h-[400px] lg:block lg:min-h-[620px]"
           >
             <div className="absolute left-1/2 top-8 w-[46%] -translate-x-1/2 md:w-[40%]">
               <PhoneFrame
@@ -600,31 +602,50 @@ function Landing() {
               </div>
             </div>
           </motion.div>
+
+          {/* Mobile phone showcase - single phone */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="flex justify-center lg:hidden"
+          >
+            <PhoneFrame
+              src={appOnboardingWelcome}
+              alt="PeakFit onboarding welcome screen"
+              className="max-w-[220px]"
+              priority
+            />
+          </motion.div>
         </div>
       </section>
 
-      <section id="features" className="relative py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
+      <section id="features" className="relative py-16 sm:py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
             <Badge>Features</Badge>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">
               Everything in the app has a job.
             </h2>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-sm text-muted-foreground sm:text-base">
               From onboarding to analytics, every screen helps users understand what to do, why it
               matters, and what changed.
             </p>
           </Reveal>
 
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
             {topFeatures.map((feature, i) => (
               <Reveal key={feature.title} delay={i * 0.04}>
-                <div className="group h-full rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    <feature.icon className="h-5 w-5" />
+                <div className="group h-full rounded-3xl border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl sm:p-6">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground sm:h-12 sm:w-12">
+                    <feature.icon className="h-4 w-4 sm:h-5 sm:w-5" />
                   </div>
-                  <h3 className="mt-5 text-base font-semibold">{feature.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{feature.desc}</p>
+                  <h3 className="mt-4 text-sm font-semibold sm:mt-5 sm:text-base">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-6">
+                    {feature.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -632,21 +653,21 @@ function Landing() {
         </div>
       </section>
 
-      <section id="app" className="relative py-20 md:py-28">
+      <section id="app" className="relative py-16 sm:py-20 md:py-28">
         <div className="absolute inset-x-0 top-20 -z-10 h-96 bg-gradient-glow opacity-70 blur-3xl" />
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <Reveal className="mx-auto max-w-3xl text-center">
             <Badge>The app screens</Badge>
-            <h2 className="mt-4 text-4xl font-bold md:text-6xl">
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-6xl">
               A complete app tour, screen by screen.
             </h2>
-            <p className="mt-5 text-muted-foreground">
+            <p className="mt-5 text-sm text-muted-foreground sm:text-base">
               All current app screenshots are shown inside real device-style frames, with each
               feature explained in the same flow users experience inside PeakFit.
             </p>
           </Reveal>
 
-          <div className="mt-16 space-y-20">
+          <div className="mt-12 space-y-12 sm:mt-16 sm:space-y-20">
             {showcaseGroups.map((group, groupIndex) => (
               <FeatureShowcase key={group.eyebrow} group={group} index={groupIndex} />
             ))}
@@ -654,21 +675,21 @@ function Landing() {
         </div>
       </section>
 
-      <section id="plans" className="relative py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-6 shadow-sm md:p-10">
+      <section id="plans" className="relative py-16 sm:py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="relative overflow-hidden rounded-[1.5rem] border border-border bg-card p-5 shadow-sm sm:rounded-[2rem] sm:p-6 md:p-10">
             <div className="absolute inset-0 bg-hero-glow opacity-70" />
-            <div className="relative grid items-center gap-12 lg:grid-cols-[0.88fr_1.12fr]">
+            <div className="relative grid items-center gap-8 sm:gap-12 lg:grid-cols-[0.88fr_1.12fr]">
               <Reveal>
                 <Badge>Plans</Badge>
-                <h2 className="mt-4 text-4xl font-bold leading-tight md:text-5xl">
+                <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
                   Build the workout, follow the week, finish the program.
                 </h2>
-                <p className="mt-4 max-w-xl text-muted-foreground">
+                <p className="mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
                   PeakFit connects the full training journey: design the split, start today's
                   session, and keep progressing through a structured 8-week plan.
                 </p>
-                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <div className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2">
                   {[
                     "Daily push, pull, legs, and custom sessions",
                     "Exercise library organized by muscle group",
@@ -677,16 +698,16 @@ function Landing() {
                   ].map((item) => (
                     <div
                       key={item}
-                      className="flex items-start gap-3 rounded-2xl border border-border bg-white/85 p-4 shadow-sm"
+                      className="flex items-start gap-3 rounded-2xl border border-border bg-white/85 p-3 shadow-sm sm:p-4"
                     >
-                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" />
+                      <span className="text-xs text-muted-foreground sm:text-sm">{item}</span>
                     </div>
                   ))}
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
-                <div className="relative mx-auto min-h-[440px] w-full max-w-2xl">
+                <div className="relative mx-auto min-h-[320px] w-full max-w-2xl sm:min-h-[440px]">
                   <div className="absolute inset-x-0 top-0 mx-auto hidden h-[420px] max-w-[620px] sm:block">
                     <div className="absolute left-[3%] top-20 w-[34%] -rotate-8">
                       <PhoneFrame
@@ -714,7 +735,7 @@ function Landing() {
                     <PhoneFrame
                       src={appWorkoutDay}
                       alt="Daily workout screen"
-                      className="max-w-[270px]"
+                      className="max-w-[200px]"
                     />
                   </div>
                 </div>
@@ -724,16 +745,16 @@ function Landing() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-16 sm:py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
             <Badge>How it works</Badge>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">
               Set up once. Follow daily. Improve weekly.
             </h2>
           </Reveal>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-6 md:grid-cols-3">
             {[
               {
                 n: "01",
@@ -752,9 +773,9 @@ function Landing() {
               },
             ].map((step, i) => (
               <Reveal key={step.n} delay={i * 0.1}>
-                <div className="h-full rounded-3xl border border-border bg-card p-8 shadow-sm">
-                  <div className="text-6xl font-bold text-gradient">{step.n}</div>
-                  <h3 className="mt-6 text-xl font-semibold">{step.t}</h3>
+                <div className="h-full rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8">
+                  <div className="text-5xl font-bold text-gradient sm:text-6xl">{step.n}</div>
+                  <h3 className="mt-5 text-lg font-semibold sm:mt-6 sm:text-xl">{step.t}</h3>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">{step.d}</p>
                 </div>
               </Reveal>
@@ -763,27 +784,27 @@ function Landing() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+      <section className="py-16 sm:py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid items-center gap-8 sm:gap-12 lg:grid-cols-2">
             <Reveal>
               <Badge>Integrations</Badge>
-              <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+              <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">
                 Health data belongs beside training data.
               </h2>
-              <p className="mt-4 text-muted-foreground">
+              <p className="mt-4 text-sm text-muted-foreground sm:text-base">
                 PeakFit is designed to bring supported health and wearable signals into the same
                 place users already track workouts and nutrition.
               </p>
 
-              <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              <div className="mt-6 grid grid-cols-2 gap-2 sm:mt-8 sm:grid-cols-3 sm:gap-3">
                 {integrations.map((name) => (
                   <div
                     key={name}
-                    className="rounded-2xl border border-border bg-card px-4 py-3 text-sm font-medium shadow-sm"
+                    className="rounded-xl border border-border bg-card px-3 py-2 text-xs font-medium shadow-sm sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm"
                   >
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-primary" />
+                      <div className="h-1.5 w-1.5 rounded-full bg-primary sm:h-2 sm:w-2" />
                       {name}
                     </div>
                   </div>
@@ -792,47 +813,51 @@ function Landing() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="relative rounded-[2rem] border border-border bg-card p-8 shadow-xl">
+              <div className="relative rounded-[1.5rem] border border-border bg-card p-5 shadow-xl sm:rounded-[2rem] sm:p-8">
                 <div className="absolute -inset-8 -z-10 bg-gradient-glow opacity-60 blur-3xl" />
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-xs text-muted-foreground">This week</div>
-                    <div className="mt-1 text-3xl font-bold">
+                    <div className="mt-1 text-2xl font-bold sm:text-3xl">
                       12,847{" "}
-                      <span className="text-base font-normal text-muted-foreground">kcal</span>
+                      <span className="text-sm font-normal text-muted-foreground sm:text-base">
+                        kcal
+                      </span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold text-primary">
-                    <Zap className="h-3 w-3" /> +18%
+                  <div className="flex items-center gap-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold text-primary sm:px-3 sm:py-1 sm:text-xs">
+                    <Zap className="h-2.5 w-2.5 sm:h-3 sm:w-3" /> +18%
                   </div>
                 </div>
 
-                <div className="mt-8 flex h-40 items-end gap-2">
+                <div className="mt-6 flex h-32 items-end gap-1.5 sm:mt-8 sm:h-40 sm:gap-2">
                   {[40, 65, 50, 80, 45, 92, 70].map((height, i) => (
-                    <div key={i} className="flex flex-1 flex-col items-center gap-2">
+                    <div key={i} className="flex flex-1 flex-col items-center gap-1.5 sm:gap-2">
                       <motion.div
                         initial={{ height: 0 }}
                         whileInView={{ height: `${height}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: i * 0.08, ease: "easeOut" }}
-                        className="w-full rounded-t-xl bg-gradient-to-t from-accent to-primary"
+                        className="w-full rounded-t-lg bg-gradient-to-t from-accent to-primary sm:rounded-t-xl"
                       />
-                      <div className="text-[10px] text-muted-foreground">
+                      <div className="text-[8px] text-muted-foreground sm:text-[10px]">
                         {["M", "T", "W", "T", "F", "S", "S"][i]}
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-6">
+                <div className="mt-6 grid grid-cols-3 gap-2 border-t border-border pt-4 sm:mt-8 sm:gap-4 sm:pt-6">
                   {[
                     { l: "Weight", v: "-4.2 kg" },
                     { l: "Muscle", v: "+2.1 kg" },
                     { l: "Sleep", v: "7h 48m" },
                   ].map((stat) => (
                     <div key={stat.l}>
-                      <div className="text-xs text-muted-foreground">{stat.l}</div>
-                      <div className="mt-1 text-lg font-semibold">{stat.v}</div>
+                      <div className="text-[10px] text-muted-foreground sm:text-xs">{stat.l}</div>
+                      <div className="mt-0.5 text-sm font-semibold sm:mt-1 sm:text-lg">
+                        {stat.v}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -842,35 +867,42 @@ function Landing() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-16 sm:py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
             <Badge>Results</Badge>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">
               Built for consistency users can feel.
             </h2>
           </Reveal>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-6 md:grid-cols-3">
             {reviews.map((review, i) => (
               <Reveal key={review.name} delay={i * 0.1}>
-                <div className="h-full rounded-3xl border border-border bg-card p-8 shadow-sm">
+                <div className="h-full rounded-3xl border border-border bg-card p-5 shadow-sm sm:p-8">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, starIndex) => (
-                      <Sparkles key={starIndex} className="h-4 w-4 fill-primary text-primary" />
+                      <Sparkles
+                        key={starIndex}
+                        className="h-3.5 w-3.5 fill-primary text-primary sm:h-4 sm:w-4"
+                      />
                     ))}
                   </div>
-                  <p className="mt-5 text-base leading-relaxed text-foreground">"{review.quote}"</p>
-                  <div className="mt-8 flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-sm font-bold text-secondary-foreground">
+                  <p className="mt-4 text-sm leading-relaxed text-foreground sm:mt-5 sm:text-base">
+                    &ldquo;{review.quote}&rdquo;
+                  </p>
+                  <div className="mt-6 flex items-center gap-3 sm:mt-8">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-xs font-bold text-secondary-foreground sm:h-12 sm:w-12 sm:text-sm">
                       {review.name
                         .split(" ")
                         .map((part) => part[0])
                         .join("")}
                     </div>
                     <div>
-                      <div className="font-semibold">{review.name}</div>
-                      <div className="text-xs text-muted-foreground">{review.role}</div>
+                      <div className="text-sm font-semibold sm:text-base">{review.name}</div>
+                      <div className="text-[11px] text-muted-foreground sm:text-xs">
+                        {review.role}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -880,23 +912,23 @@ function Landing() {
         </div>
       </section>
 
-      <section id="pricing" className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
+      <section id="pricing" className="py-16 sm:py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
             <Badge>Pricing</Badge>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">
               Start free. Upgrade when you want deeper coaching.
             </h2>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-sm text-muted-foreground sm:text-base">
               Join 10,000+ users hitting their goals with AI-powered coaching. Cancel anytime.
             </p>
 
-            <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-border bg-card p-1 shadow-sm">
+            <div className="mt-6 inline-flex items-center gap-1 rounded-full border border-border bg-card p-1 shadow-sm sm:mt-8">
               {billingLabels.map((option) => (
                 <button
                   key={option.id}
                   onClick={() => setBillingCycle(option.id)}
-                  className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all md:px-5 ${
+                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all sm:px-4 sm:text-sm md:px-5 ${
                     billingCycle === option.id
                       ? "bg-gradient-primary text-primary-foreground"
                       : "text-muted-foreground"
@@ -904,56 +936,60 @@ function Landing() {
                 >
                   {option.label}
                   {option.id === "yearly" && (
-                    <span className="ml-1 text-xs opacity-80">({currency.yearlySavings})</span>
+                    <span className="ml-1 text-[10px] opacity-80 sm:text-xs">
+                      ({currency.yearlySavings})
+                    </span>
                   )}
                 </button>
               ))}
             </div>
-            <p className="mt-3 text-xs text-muted-foreground">
+            <p className="mt-2 text-[11px] text-muted-foreground sm:mt-3 sm:text-xs">
               Showing {currencyRegion === "IN" ? "INR" : "USD"} pricing based on your locale.
             </p>
           </Reveal>
 
-          <div className="mx-auto mt-14 max-w-xl">
+          <div className="mx-auto mt-10 max-w-xl sm:mt-14">
             <Reveal>
-              <div className="relative h-full overflow-hidden rounded-3xl border border-primary/40 bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-                <div className="absolute right-6 top-6 rounded-full bg-gradient-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+              <div className="relative h-full overflow-hidden rounded-3xl border border-primary/40 bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl sm:p-8">
+                <div className="absolute right-4 top-4 rounded-full bg-gradient-primary px-2.5 py-0.5 text-[10px] font-semibold text-primary-foreground sm:right-6 sm:top-6 sm:px-3 sm:py-1 sm:text-xs">
                   Most popular
                 </div>
-                <div className="mb-5 inline-flex flex-col rounded-2xl border border-orange-200 bg-orange-50 px-4 py-2 text-left shadow-sm">
-                  <span className="text-xs font-bold text-orange-700">🔥 Limited Offer</span>
-                  <span className="mt-0.5 text-[11px] font-medium text-orange-600">
+                <div className="mb-4 inline-flex flex-col rounded-xl border border-orange-200 bg-orange-50 px-3 py-1.5 text-left shadow-sm sm:mb-5 sm:rounded-2xl sm:px-4 sm:py-2">
+                  <span className="text-[10px] font-bold text-orange-700 sm:text-xs">
+                    🔥 Limited Offer
+                  </span>
+                  <span className="mt-0.5 text-[10px] font-medium text-orange-600 sm:text-[11px]">
                     Launch pricing ends in {formatOfferCountdown(offerSecondsLeft)}
                   </span>
                 </div>
-                <h3 className="text-lg font-semibold">PeakFit Pro</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <h3 className="text-base font-semibold sm:text-lg">PeakFit Pro</h3>
+                <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
                   AI coaching, smart nutrition, health sync, recovery insights, and progress
                   analytics in one membership.
                 </p>
-                <div className="mt-6 flex items-baseline gap-1">
-                  <span className="text-5xl font-bold">
+                <div className="mt-4 flex items-baseline gap-1 sm:mt-6">
+                  <span className="text-4xl font-bold sm:text-5xl">
                     {formatPlanPrice(currency.prices[billingCycle], currency.symbol)}
                   </span>
-                  <span className="text-sm text-muted-foreground">{cadence}</span>
+                  <span className="text-xs text-muted-foreground sm:text-sm">{cadence}</span>
                 </div>
                 {billingCycle === "yearly" && (
-                  <p className="mt-2 text-xs font-medium text-primary">
+                  <p className="mt-2 text-[11px] font-medium text-primary sm:text-xs">
                     {currency.yearlySavings.replace("save", "Save")} with annual billing
                   </p>
                 )}
                 {billingCycle === "lifetime" && (
-                  <p className="mt-3 rounded-2xl border border-primary/20 bg-secondary px-4 py-3 text-xs font-semibold text-secondary-foreground">
+                  <p className="mt-3 rounded-2xl border border-primary/20 bg-secondary px-3 py-2 text-[11px] font-semibold text-secondary-foreground sm:px-4 sm:py-3 sm:text-xs">
                     Pay once. Use forever. Only 500 lifetime slots available.
                   </p>
                 )}
                 <Link
                   to="/download"
-                  className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]"
+                  className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02] sm:mt-6 sm:py-3"
                 >
                   {billingCycle === "lifetime" ? "Get Lifetime Access" : "Start 7-Day Free Trial"}
                 </Link>
-                <ul className="mt-8 space-y-3">
+                <ul className="mt-6 space-y-2.5 sm:mt-8 sm:space-y-3">
                   {[
                     "AI workout coach",
                     "Advanced nutrition intelligence",
@@ -962,8 +998,8 @@ function Landing() {
                     "Smart weekly plan adjustments",
                     "Premium transformation dashboards",
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                    <li key={item} className="flex items-start gap-2.5 text-xs sm:gap-3 sm:text-sm">
+                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary sm:h-4 sm:w-4" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -974,31 +1010,35 @@ function Landing() {
         </div>
       </section>
 
-      <section id="faq" className="py-20 md:py-28">
-        <div className="mx-auto max-w-3xl px-6">
+      <section id="faq" className="py-16 sm:py-20 md:py-28">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <Reveal className="text-center">
             <Badge>FAQ</Badge>
-            <h2 className="mt-4 text-4xl font-bold md:text-5xl">Questions before launch.</h2>
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-5xl">
+              Questions before launch.
+            </h2>
           </Reveal>
 
-          <div className="mt-12 space-y-3">
+          <div className="mt-8 space-y-2.5 sm:mt-12 sm:space-y-3">
             {faqs.map((faq, i) => (
               <Reveal key={faq.q} delay={i * 0.05}>
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full overflow-hidden rounded-2xl border border-border bg-card text-left shadow-sm transition-colors hover:border-primary/40"
+                  className="w-full overflow-hidden rounded-xl border border-border bg-card text-left shadow-sm transition-colors hover:border-primary/40 sm:rounded-2xl"
                 >
-                  <div className="flex items-center justify-between gap-4 px-6 py-5">
-                    <span className="font-medium">{faq.q}</span>
+                  <div className="flex items-center justify-between gap-3 px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
+                    <span className="text-sm font-medium sm:text-base">{faq.q}</span>
                     <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${openFaq === i ? "rotate-180" : ""}`}
+                      className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform sm:h-5 sm:w-5 ${openFaq === i ? "rotate-180" : ""}`}
                     />
                   </div>
                   <div
                     className={`grid transition-all duration-300 ${openFaq === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
                   >
                     <div className="overflow-hidden">
-                      <p className="px-6 pb-5 text-sm leading-6 text-muted-foreground">{faq.a}</p>
+                      <p className="px-4 pb-4 text-xs leading-5 text-muted-foreground sm:px-6 sm:pb-5 sm:text-sm sm:leading-6">
+                        {faq.a}
+                      </p>
                     </div>
                   </div>
                 </button>
@@ -1008,60 +1048,62 @@ function Landing() {
         </div>
       </section>
 
-      <section id="download" className="relative py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-8 shadow-xl md:p-12">
+      <section id="download" className="relative py-16 sm:py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="relative overflow-hidden rounded-[1.5rem] border border-border bg-card p-5 shadow-xl sm:rounded-[2rem] sm:p-8 md:p-12">
             <div className="absolute inset-0 bg-hero-glow opacity-80" />
             <div className="absolute inset-0 grid-bg opacity-25" />
-            <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_320px]">
+            <div className="relative grid items-center gap-8 sm:gap-10 lg:grid-cols-[1fr_320px]">
               <Reveal>
                 <Badge>Download</Badge>
-                <h2 className="mt-4 text-4xl font-bold leading-tight md:text-6xl">
+                <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:text-6xl">
                   Scan to download PeakFit.
                 </h2>
-                <p className="mt-5 max-w-xl text-muted-foreground">
+                <p className="mt-4 max-w-xl text-sm text-muted-foreground sm:mt-5 sm:text-base">
                   Download PeakFit from the App Store or Google Play. Scan the QR code below to open
                   the store directly on your phone.
                 </p>
-                <div className="mt-8 flex flex-wrap items-center gap-4">
+                <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-4">
                   <a
                     href={APP_STORE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 rounded-2xl bg-gradient-primary px-6 py-3 text-primary-foreground shadow-lg transition-transform hover:scale-105"
+                    className="inline-flex items-center gap-2.5 rounded-xl bg-gradient-primary px-4 py-2.5 text-primary-foreground shadow-lg transition-transform hover:scale-105 sm:rounded-2xl sm:px-6 sm:py-3"
                   >
-                    <Apple className="h-7 w-7" />
+                    <Apple className="h-5 w-5 sm:h-7 sm:w-7" />
                     <div className="text-left">
-                      <div className="text-[10px] opacity-80">Download on the</div>
-                      <div className="text-sm font-semibold">App Store</div>
+                      <div className="text-[9px] opacity-80 sm:text-[10px]">Download on the</div>
+                      <div className="text-xs font-semibold sm:text-sm">App Store</div>
                     </div>
                   </a>
                   <a
                     href={PLAY_STORE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-6 py-3 text-foreground shadow-sm transition-transform hover:scale-105"
+                    className="inline-flex items-center gap-2.5 rounded-xl border border-border bg-card px-4 py-2.5 text-foreground shadow-sm transition-transform hover:scale-105 sm:rounded-2xl sm:px-6 sm:py-3"
                   >
-                    <Play className="h-7 w-7 fill-foreground" />
+                    <Play className="h-5 w-5 fill-foreground sm:h-7 sm:w-7" />
                     <div className="text-left">
-                      <div className="text-[10px] text-muted-foreground">Get it on</div>
-                      <div className="text-sm font-semibold">Google Play</div>
+                      <div className="text-[9px] text-muted-foreground sm:text-[10px]">
+                        Get it on
+                      </div>
+                      <div className="text-xs font-semibold sm:text-sm">Google Play</div>
                     </div>
                   </a>
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
-                <div className="rounded-[2rem] border border-border bg-white p-5 text-center shadow-2xl">
-                  <div className="mb-4 flex items-center justify-center gap-2 text-sm font-semibold text-foreground">
-                    <QrCode className="h-4 w-4" />
+                <div className="rounded-2xl border border-border bg-white p-4 text-center shadow-2xl sm:rounded-[2rem] sm:p-5">
+                  <div className="mb-3 flex items-center justify-center gap-2 text-xs font-semibold text-foreground sm:mb-4 sm:text-sm">
+                    <QrCode className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                     Scan to download PeakFit
                   </div>
                   <img
                     src={qrCodeImage}
                     alt="Scan to download PeakFit"
-                    className="mx-auto h-56 w-56 rounded-2xl border border-border object-contain"
+                    className="mx-auto h-40 w-40 rounded-xl border border-border object-contain sm:h-56 sm:w-56 sm:rounded-2xl"
                   />
-                  <p className="mt-4 text-xs leading-5 text-muted-foreground">
+                  <p className="mt-3 text-[11px] leading-4 text-muted-foreground sm:mt-4 sm:text-xs sm:leading-5">
                     Point your phone camera at the QR code to open the store page.
                   </p>
                 </div>
@@ -1071,12 +1113,12 @@ function Landing() {
         </div>
       </section>
 
-      <footer className="border-t border-border bg-card/50 py-16">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-12 md:grid-cols-4">
-            <div>
+      <footer className="border-t border-border bg-card/50 py-10 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid gap-8 sm:gap-12 md:grid-cols-4">
+            <div className="md:col-span-1">
               <BrandLockup />
-              <p className="mt-4 max-w-xs text-sm text-muted-foreground">
+              <p className="mt-4 max-w-xs text-xs text-muted-foreground sm:text-sm">
                 The AI fitness app for people who want workouts, nutrition, recovery, and progress
                 in one place.
               </p>
@@ -1195,24 +1237,26 @@ function FeatureShowcase({ group, index }: { group: FeatureGroup; index: number 
   const reversed = index % 2 === 1;
 
   return (
-    <div className="overflow-hidden rounded-[2rem] border border-border bg-card/80 p-6 shadow-sm md:p-8">
+    <div className="overflow-hidden rounded-[1.5rem] border border-border bg-card/80 p-4 shadow-sm sm:rounded-[2rem] sm:p-6 md:p-8">
       <div
-        className={`grid items-center gap-10 lg:grid-cols-[0.42fr_0.58fr] ${reversed ? "lg:grid-flow-col-dense" : ""}`}
+        className={`grid items-center gap-8 sm:gap-10 lg:grid-cols-[0.42fr_0.58fr] ${reversed ? "lg:grid-flow-col-dense" : ""}`}
       >
         <Reveal className={reversed ? "lg:col-start-2" : ""}>
           <div className="max-w-xl">
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground">
-              <Icon className="h-5 w-5" />
+            <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground sm:h-12 sm:w-12">
+              <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <div className="mt-5 text-xs font-bold uppercase tracking-[0.22em] text-primary">
+            <div className="mt-4 text-xs font-bold uppercase tracking-[0.22em] text-primary sm:mt-5">
               {group.eyebrow}
             </div>
-            <h3 className="mt-3 text-3xl font-bold leading-tight md:text-5xl">{group.title}</h3>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground md:text-base">
+            <h3 className="mt-3 text-2xl font-bold leading-tight sm:text-3xl md:text-5xl">
+              {group.title}
+            </h3>
+            <p className="mt-4 text-sm leading-6 text-muted-foreground sm:text-base sm:leading-7">
               {group.description}
             </p>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground">
-              <Activity className="h-4 w-4 text-primary" />
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold text-secondary-foreground sm:mt-6 sm:px-4 sm:py-2 sm:text-sm">
+              <Activity className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />
               {group.screens.length} {group.screens.length === 1 ? "screen" : "screens"} in this
               flow
             </div>
@@ -1220,13 +1264,13 @@ function FeatureShowcase({ group, index }: { group: FeatureGroup; index: number 
         </Reveal>
 
         <Reveal delay={0.08} className={reversed ? "lg:col-start-1" : ""}>
-          <div className="relative min-h-[500px] overflow-hidden rounded-[2rem] border border-border bg-gradient-to-br from-secondary/70 via-white to-card p-6 shadow-inner">
+          <div className="relative min-h-[350px] overflow-hidden rounded-[1.5rem] border border-border bg-gradient-to-br from-secondary/70 via-white to-card p-4 shadow-inner sm:min-h-[500px] sm:rounded-[2rem] sm:p-6">
             <AngledPhoneStack screens={group.screens} />
           </div>
         </Reveal>
       </div>
 
-      <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-6 grid gap-3 sm:mt-8 md:grid-cols-2 xl:grid-cols-3">
         {group.screens.map((screen, screenIndex) => (
           <Reveal key={screen.title} delay={screenIndex * 0.03}>
             <ScreenNote screen={screen} index={screenIndex} />
@@ -1265,28 +1309,30 @@ function AngledPhoneStack({ screens }: { screens: ScreenFeature[] }) {
 
   return (
     <>
-      <div className="overflow-x-auto pb-3 md:hidden">
-        <div className="flex snap-x snap-mandatory gap-5">
+      <div className="overflow-x-auto pb-3 sm:hidden">
+        <div className="flex snap-x snap-mandatory gap-4">
           {screens.map((screen) => (
             <div
               key={screen.title}
-              className="flex min-w-full snap-center flex-col items-center justify-center px-4"
+              className="flex min-w-[85%] snap-center flex-col items-center justify-center px-2"
             >
               <PhoneFrame
                 src={screen.src}
                 alt={`${screen.title} app screenshot`}
-                className="mx-auto max-w-[250px]"
+                className="mx-auto max-w-[200px]"
               />
-              <div className="mt-5 max-w-xs text-center">
-                <div className="text-sm font-semibold">{screen.title}</div>
-                <p className="mt-1 text-xs leading-5 text-muted-foreground">{screen.description}</p>
+              <div className="mt-4 max-w-xs text-center">
+                <div className="text-xs font-semibold sm:text-sm">{screen.title}</div>
+                <p className="mt-1 text-[11px] leading-4 text-muted-foreground">
+                  {screen.description}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="absolute inset-x-0 top-8 mx-auto hidden h-[430px] max-w-[680px] md:block">
+      <div className="absolute inset-x-0 top-8 mx-auto hidden h-[350px] max-w-[550px] sm:block sm:h-[430px] sm:max-w-[680px] md:block">
         {Array.from({ length: deviceCount }).map((_, phoneIndex) => {
           const screen = screens[(baseIndex + phoneIndex) % screens.length];
           const position = positions[phoneIndex];
